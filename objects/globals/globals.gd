@@ -135,6 +135,7 @@ func get_unlocked_toons() -> Array[PlayerCharacter]:
 ## Global Cog Pools
 var GRUNT_COG_POOL: CogPool
 var MOD_COG_POOL: CogPool
+var foreman_dna := load("res://objects/cog/presets/sellbot/the_mingler.tres")
 
 func add_standard_cog(cog_dna: CogDNA) -> void:
 	GRUNT_COG_POOL.cogs.append(cog_dna)
@@ -551,7 +552,7 @@ func on_floor_start(game_floor: GameFloor) -> void:
 		s_secret_floor.emit()
 
 const MaxToonupConsumables := 3
-
+var fore_cog_index = 0
 
 #region Global Signals
 signal s_game_paused(pause_menu)

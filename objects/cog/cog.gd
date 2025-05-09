@@ -6,7 +6,7 @@ signal s_dna_set
 ## Constants
 const VIRTUAL_COG_COLOR := Color('ff0000cc')
 const COMMON_LEVEL_RANGE := Vector2i(1, 12)
-const QUEST_HELP_CHANCE := 20
+const QUEST_HELP_CHANCE := 45 # can change back to 45
 
 ## For flying in and out
 const PROP_PROPELLER := preload('res://objects/props/etc/cog_propeller.tscn')
@@ -23,6 +23,7 @@ enum CogState {
 @export_range(0, 20) var level: int
 @export var custom_level_range := Vector2i(1, 12)
 @export var level_range_offset := 0
+@export var level_rebalance := 0
 @export var stats: BattleStats
 @export var pool: CogPool
 @export var use_floor_pool := true
@@ -31,18 +32,25 @@ enum CogState {
 @export var dna: CogDNA
 var dna_set := false
 var attacks : Array[CogAttack]
-@export var skelecog := false
+@export var skelecog := false # CHANGE TO TRUE AFTER DEMO
 @export var skelecog_chance := 10
 @export var fusion := false
+@export var foreman := true #change to TRUE
 @export var fusion_chance := 0
 @export var virtual_cog := false
+@export var techbot := false 
 @export var v2 := false
+@export var v1_5 := false
 @export var health_mod := 1.0
+@export var special_attack := false
+@export var foreman_attack_boost := 1.25
+@export var last_damage_source = ""
+@export var ts_pmo = false #rebalancing these goddamn special room cogs
 var use_mod_cogs_pool := false
 var has_forced_dna := false
 
 # Movement Speed
-var walk_speed := 4.0
+var walk_speed := 4.0 #was 4.0
 
 # Optional walking path
 @export var path: Path3D
@@ -63,6 +71,7 @@ var light_tween: Tween
 
 # Head position
 var head_node: Node3D
+var test_head: Node3D
 
 # Battle values
 var lured := false
@@ -92,13 +101,18 @@ const SKELE_MURMUR := preload("res://audio/sfx/battle/cogs/Skel_COG_VO_murmur.og
 const SKELE_STATEMENT := preload("res://audio/sfx/battle/cogs/Skel_COG_VO_statement.ogg")
 const SKELE_QUESTION := preload("res://audio/sfx/battle/cogs/Skel_COG_VO_question.ogg")
 
+
+
 func _ready():
 	# Announce Cog's existence
 	if is_instance_valid(Util.floor_manager):
 		Util.floor_manager.s_cog_spawned.emit(self)
 	print("running randomize cog")
+	if foreman:
+		has_forced_dna =true
 	# Create a Cog based on the game's current parameters
 	randomize_cog()
+	
 
 func face_position(pos: Vector3):
 	var face_pos := Vector3(pos.x, global_position.y, pos.z)
@@ -137,9 +151,18 @@ func set_dna(cog_dna: CogDNA, full_reset := true) -> void:
 	attacks = get_attacks()
 	construct_cog()
 	set_up_stats()
+	
+func set_new_level(new_level: int):
+	level = new_level
+	var health_percentage: float = stats.hp / stats.max_hp
+	
+	set_up_stats()
+	
+	stats.hp = round(stats.max_hp * health_percentage)
 
 func roll_for_attributes() -> void:
 	# Skelecog perchance?
+
 	if RandomService.randi_channel('skelecog_chance') % 100 < skelecog_chance:
 		skelecog = true
 	# Mayhaps even... fusion?
@@ -147,14 +170,17 @@ func roll_for_attributes() -> void:
 		fusion = true
 
 func roll_for_level() -> void:
+
 	# Get a random cog level first
-	if level == 0:
+	if level == 0 or ts_pmo == true:
 		if is_instance_valid(Util.floor_manager):
+			custom_level_range.x += 3
 			custom_level_range = Util.floor_manager.level_range
 		elif dna: 
 			custom_level_range = Vector2i(dna.level_low, dna.level_high)
 		level = RandomService.randi_range_channel('cog_levels', custom_level_range.x, custom_level_range.y)
-	
+		level += level_rebalance
+	#if level <= 9: level = level + 3 I added this crap, removing it
 	# Allow for Cogs to be higher level than the floor intends
 	if sign(level_range_offset) == 1:
 		level = custom_level_range.y + level_range_offset
@@ -182,6 +208,7 @@ func roll_for_dna() -> void:
 				if quest.specific_cog and test_dna(quest.specific_cog, level):
 					print('spawning task cog')
 					dna = quest.specific_cog
+
 				else:
 					if not quest.specific_cog: print('quest not specific cog')
 					else: print('dna test failed')
@@ -189,14 +216,24 @@ func roll_for_dna() -> void:
 	# Get a random dna if dna doesn't exist
 	if not dna:
 		while not test_dna(dna, level):
+			#instead of making a new cog im just making all minglers have fore cog effects, lets see if backfires in teh future
+			
 			dna = pool.cogs[RandomService.randi_channel('cog_dna') % pool.cogs.size()]
 	else:
 		has_forced_dna = true
-
+	if foreman: 
+		dna = Globals.foreman_dna
+		skelecog = true
+	if not foreman and Util.floor_number < 4:
+		if dna == Globals.foreman_dna:
+			print("changed a mingler into a two face ??, maybe lol")
+			dna = pool.cogs[ pool.cogs.size() - 3] # could potentially make it mingler again if custom cogs but eh
+	#dna = Globals.foreman_dna 
 	dna = dna.duplicate()
 
 func get_attacks() -> Array[CogAttack]:
 	var atk: Array[CogAttack] = []
+	#I edited this!
 	atk = dna.attacks
 	return atk
 
@@ -225,10 +262,17 @@ func set_up_stats() -> void:
 	stats.damage = 0.4 + (level * 0.1)
 	stats.accuracy = 0.75 + (level * 0.05)
 	var new_text: String = dna.cog_name + '\n'
+	if foreman: new_text = 'Factory Foreman' + '\n'
 	new_text += 'Level ' + str(level)
+	if foreman: new_text += '.mgr'
+	if dna.is_v2: self.v2 = RandomService.randi_channel('true_random') % 100 < 60
 	if v2: new_text += " v2.0"
 	if dna.is_mod_cog: new_text += '\nProxy'
 	if dna.is_admin: new_text += '\nAdministrator'
+	#this runs afer initial dna but it can cause funny flunky / v1.5 foremen
+	dna.scale *= randf_range(1, 1.6)
+
+	if foreman: body.set_color(Color(0.867, 0.627, 0.867))
 	if dna.custom_nametag_suffix: new_text += '\n%s' % dna.custom_nametag_suffix
 	body.nametag.text = new_text
 	body.nametag_node.update_position(new_text)
@@ -275,11 +319,12 @@ func construct_cog():
 			body.scale /= 5.29
 		CogDNA.SuitType.SUIT_C:
 			body.scale /= 4.14
+	dna.scale *= 1.1
 	body_root.add_child(body)
 	
 	if dna.head_shader and dna.head_shader.has_method('randomize_shader'):
 		dna.head_shader.randomize_shader()
-	
+	#dna.scale *= randf_range(1, 1.6)
 	# Set the body's dna
 	body.set_dna(dna)
 	
@@ -296,6 +341,11 @@ func construct_cog():
 		body.set_color(VIRTUAL_COG_COLOR)
 	
 	head_node = body.head_node
+	head_node.scale = Vector3(0.5, 0.5, 0.5)
+	#if foreman: 
+	head_node.scale *= 1.4
+	#test_head = body.head_cone
+	#dna.head = body.head_node
 
 	dna_set = true
 	s_dna_set.emit()
@@ -314,7 +364,11 @@ func update_health_light():
 		light_tween.kill()
 		light_tween = null
 
-	if health_ratio >= .95:
+	if health_ratio >= 1.5:
+		hp_light.set_color(Color(0.55, 0.0, 0.75), Color(0.55, 0.0, 0.75, 0.5))
+	elif health_ratio >= 1.02:
+		hp_light.set_color(Color(0.4, 0.6, 0.8), Color(0.4, 0.6, 0.8, 0.5))
+	elif health_ratio >= .95:
 		hp_light.set_color(Color(0, 1, 0), Color(.25, 1, .25, .5))
 	elif health_ratio >= .7:
 		hp_light.set_color(Color(1, 1, 0), Color(1, 1, .25, .5))
@@ -392,14 +446,38 @@ func get_attack() -> CogAttack:
 	else:
 		if attacks.size() == 0:
 			return get_debug_attack()
-		
-		var attack: CogAttack = attacks[RandomService.randi_channel('true_random') % attacks.size()].duplicate()
+		var special_attack_gate = 1 if special_attack else 0
+		#var smash
+		var bruh
+		if foreman: bruh = RandomService.randi_channel('true_random') % (attacks.size() - 1 - special_attack_gate)
+		else: bruh = RandomService.randi_channel('true_random') % (attacks.size())
+		#var attack: CogAttack = attacks[RandomService.randi_channel('true_random') % (attacks.size() - special_attack_gate)].duplicate()
+		#if special_attack: attack = attacks[attacks.size() - 1]
+		var attack: CogAttack
+		if special_attack: attack = attacks[attacks.size() - 1].duplicate()
+		else: attack = attacks[bruh].duplicate()
 		attack.user = self
 		attack.damage += get_damage_boost()
-		if Util.get_player().random_cog_heals and RandomService.randi_channel('true_random') % 100 < 5:
-			attack.store_boost_text("Lovely Heal!", Color.HOT_PINK)
-			attack.damage = -attack.damage
+		if not special_attack:
+			if Util.get_player().random_cog_heals and RandomService.randi_channel('true_random') % 100 < 5:
+				attack.store_boost_text("Lovely Heal!", Color.HOT_PINK)
+				attack.damage = -attack.damage
 		# Get the target
+		
+		if foreman and attack.action_name == "Tabulate": 
+			print("tabulate and foreman")
+		if foreman and special_attack:
+			# There is a better way to do but rn idc
+			stats.is_foreman = true
+			attack.action_name = "Worker's Compensation"
+			attack.summary = "Foreman recieves and damage and health bonus"
+			attack.attack_lines = ["Do you have any idea how much paperwork I will have to file after this?"]
+			attack.target_type = BattleAction.ActionTarget.SELF
+			attack.damage = stats.max_hp * -0.8333
+			attack.accuracy = 100
+			
+			#attack.manager.add_status_effect(new_boost)
+		special_attack = false
 		attack.targets = get_targets(attack.target_type)
 		
 		return attack

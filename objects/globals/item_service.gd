@@ -36,7 +36,7 @@ func get_random_item(pool: ItemPool, override_rolls := false) -> Item:
 	## Rolls to force progression items when they're needed:
 	if not override_rolls:
 		# Gag roll
-		var gag_roll := RandomService.randf_channel("gag_rolls")
+		var gag_roll := RandomService.randf_channel("gag_rolls") * 0.94
 		print('Gag rate is ' + str(get_gag_rate()) + ' Gag roll is ' + str(gag_roll))
 		if gag_roll < get_gag_rate():
 			print('Forcing gag spawn')
@@ -202,9 +202,9 @@ func apply_inventory() -> void:
 const GagGoals: Dictionary = {
 	1: 0.2,
 	2: 0.35,
-	3: 0.5,
-	4: 0.7,
-	5: 0.9,
+	3: 0.60, # was 0.5 making it 0.66
+	4: 0.80, # was 0.7 making it 0.85
+	5: 0.92,
 	6: 1.0,
 }
 
@@ -212,7 +212,7 @@ func get_gag_rate() -> float:
 	if not Util.get_player():
 		return 0
 	
-	var floor_num := maxi(Util.floor_number + 1, 1)
+	var floor_num := Util.floor_number + 1
 	
 	var stats := Util.get_player().stats
 	var total_gags := 0
@@ -249,7 +249,7 @@ func get_gag_rate() -> float:
 	return chance
 
 const STARTING_LAFF := 30
-const FLOOR_LAFF_INCREMENT := 14
+const FLOOR_LAFF_INCREMENT := 17 # was 14
 const LIKELIHOOD_PER_POINT := 0.1
 func get_laff_rate() -> float:
 	if not is_instance_valid(Util.get_player()):

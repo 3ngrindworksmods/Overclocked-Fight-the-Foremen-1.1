@@ -23,6 +23,8 @@ signal s_turn_complete(gag_order: Array[ToonAttack])
 signal s_gag_canceled(gag: BattleAction)
 signal s_gags_updated(gags: Array[ToonAttack])
 signal s_update_toonups
+signal s_damage_drifted(dict: Dictionary)
+signal s_item_effect(dict: Dictionary)
 
 # Locals
 var turn := 0:
@@ -39,6 +41,7 @@ var remaining_turns: int:
 var selected_gags: Array[ToonAttack] = []
 var fire_action: ToonAttackFire
 var timer : GameTimer
+var drift_effect_dict = {}
 
 func _ready():
 	refresh_turns()
@@ -52,6 +55,7 @@ func _ready():
 	check_pink_slips()
 
 	status_container.target = Util.get_player()
+	%SelectedGags.s_gag_canceled.connect(cancel_gag)
 
 func gag_selected(gag: BattleAction) -> void:
 	if remaining_turns <= 0:
@@ -140,7 +144,16 @@ func complete_turn():
 func sort_gags(gags: Array[ToonAttack]) -> Array[ToonAttack]:
 	if Util.get_player().custom_gag_order:
 		return gags
-	
+	#print("battle ui line 132")
+	if(gag_order_menu.panels):
+		#gag_order_menu.panels[0].color = (Color(0.867, 0.627, 0.867))
+		var panel1 = gag_order_menu.panels[0]
+		var children = panel1.get_children()
+		#if panel.material:
+		#panel.material.set_shader_param("color", Color(0, 1, 0, 1))  # Green
+	#print(gag_order_menu.get_property_list())    var style_box = StyleBoxFlat.new()
+	#style_box.bg_color = Color(0, 0, 1, 1)  # Blue
+	#panel.add_theme_stylebox_override("panel", style_box)
 	var gag_order : Array[ToonAttack] = []
 	var loadout: Array[Track] = Util.get_player().character.gag_loadout.loadout
 	for track in loadout:

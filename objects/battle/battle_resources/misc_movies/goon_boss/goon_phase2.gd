@@ -18,8 +18,8 @@ func action() -> void:
 	
 	for i in cog_count:
 		var cog := COG.instantiate()
-		cog.virtual_cog = true
-		cog.skelecog = true
+		cog.virtual_cog = false
+		cog.skelecog = false
 		cog.hide()
 		# Proxies :)
 		if RandomService.randf_channel('goon_boss_proxies') < battle_node.get_mod_cog_chance() / 2.0 and not Util.on_easy_floor():
@@ -56,6 +56,11 @@ func assign_gag_immunities(cogs: Array[Cog]) -> Array[StatusEffectGagImmunity]:
 	
 	# Assign a random gag immunity to each Cog
 	for cog in cogs:
+		var new_status1 := GAG_IMMUNITY_EFFECT.duplicate()
+		new_status1.target = cog
+		new_status1.rounds = -1
+		new_status1.set_track(loadout[RandomService.randi_channel('true_random') % loadout.size()])
+		cog.dna.status_effects.append(new_status1)
 		var new_status := GAG_IMMUNITY_EFFECT.duplicate()
 		new_status.target = cog
 		new_status.rounds = -1

@@ -80,7 +80,7 @@ func action() -> void:
 	await cannon_tween.finished
 	
 	# Remove cog from battle
-	manager.someone_died(cog)
+	await manager.someone_died(cog)
 
 func miss(cog : Cog) -> void:
 	var miss_tween := manager.create_tween()

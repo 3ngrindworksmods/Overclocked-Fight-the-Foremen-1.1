@@ -302,7 +302,7 @@ func set_selected_toon(character: PlayerCharacter) -> void:
 		%ToonName.set_text(character.character_name)
 	%SummaryDesc.set_text(character.character_summary)
 	for achievement in character.achievement_qualities.keys():
-		if SaveFileService.progress_file.achievements_earned[achievement]:
+		if achievement in SaveFileService.progress_file.achievements_earned and SaveFileService.progress_file.achievements_earned[achievement]:
 			%SummaryDesc.text += "\n- %s" % character.achievement_qualities[achievement]
 	%PickAToonLabel.hide()
 

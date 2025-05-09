@@ -24,6 +24,7 @@ signal s_toon_didnt_crit
 signal s_toon_dealt_damage(action: BattleAction, target: Node3D, amount: int)
 signal s_action_started(action: BattleAction)
 signal s_action_finished(action: BattleAction)
+signal s_gags_selected(action: BattleAction)
 
 func battle_started(manager : BattleManager):
 	ongoing_battle = manager
