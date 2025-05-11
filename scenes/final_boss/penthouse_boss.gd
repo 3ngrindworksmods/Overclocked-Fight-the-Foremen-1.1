@@ -8,7 +8,7 @@ const COG_SCENE := preload("res://objects/cog/cog.tscn")
 const SFX_CAGE_LOWER := preload("res://audio/sfx/misc/CHQ_SOS_cage_lower.ogg")
 const SFX_CAGE_LAND := preload("res://audio/sfx/misc/CHQ_SOS_cage_land.ogg")
 
-var WANT_DEBUG_BOSSES := true
+var WANT_DEBUG_BOSSES := false
 var DEBUG_FORCE_BOSS_ONE: CogDNA = load("res://objects/cog/presets/lawbot/whistleblower.tres")
 var DEBUG_FORCE_BOSS_TWO: CogDNA = load("res://objects/cog/presets/bossbot/union_buster.tres")
 

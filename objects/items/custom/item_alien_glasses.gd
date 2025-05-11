@@ -1,48 +1,32 @@
 extends ItemScript
 
-const DMG_BONUS := 1.3
+const RANDOM_COG_CHANCE := 0.15
 
-var turns_used = 0
-var activate_turn = 7
-
-func on_collect(_item: Item, _model: Node3D) -> void:
+func on_collect(_item: Item, _object: Node3D) -> void:
 	setup()
 
 func on_load(_item: Item) -> void:
 	setup()
 
 func setup() -> void:
-	BattleService.s_action_started.connect(on_action_started)
-	BattleService.s_battle_started.connect(refresh_turns)
-	BattleService.s_round_ended.connect(on_round_ended)
-	BattleService.s_battle_ending.connect(on_battle_ending)
+	BattleService.s_round_started.connect(on_round_start)
 
-func on_action_started(action: BattleAction) -> void:
-	if action is ToonAttack:
-		turns_used += 1
-		if turns_used % activate_turn == 0:
-			var bonus_dmg = 0
-			if action.targets.size() == 1:
-				bonus_dmg = int(action.targets[0].stats.hp * 0.15)
-				#bonus_dmg =  int(action.targets[0].stats.hp * 0.1)
-				#action.damage += bonus_dmg
-				action.targets[0].stats.hp -= action.targets[0].stats.hp * 0.15
-			else:
-				if action.main_target != null:
-						bonus_dmg = int(action.main_target.stats.hp * 0.15)
-						action.main_target.stats.hp -= int(action.main_target.stats.hp * 0.15)
-			action.store_boost_text(str(bonus_dmg) + " HP disappeared!", Color(0.4, 1.0, 0.7))  # Alien green
+func on_round_start(actions: Array[BattleAction]) -> void:
+	for action in actions:
+		if action is ToonAttack and RandomService.randf_channel('true_random') < RANDOM_COG_CHANCE:
+			print('randomizing action: %s' % action.action_name)
+			randomize_action(action)
 
-func refresh_turns() -> void:
-	#irrelevant
-	turns_used = 0
-	
-func on_round_ended(manager: BattleManager) -> void:
-	var turns_remaining_in_cycle = activate_turn - (turns_used % activate_turn)
-	var activation_turn_next_round = turns_remaining_in_cycle - 1     
-	if turns_remaining_in_cycle <= Util.get_player().stats.turns:
-		var dict = {}
-		dict[activation_turn_next_round] = "The main target of this action will lose 15% of their hp"
-		manager.battle_ui.s_item_effect.emit(dict)
-func  on_battle_ending() -> void:
-	turns_used = 0
+func randomize_action(action: ToonAttack) -> void:
+	var prev_targets := action.targets
+	var prev_main_target = action.main_target
+	if not action.target_type == BattleAction.ActionTarget.ENEMY:
+		action.targets.clear()
+		action.reassess_splash_targets(RandomService.randi_channel('true_random') % BattleService.ongoing_battle.cogs.size(), BattleService.ongoing_battle)
+		if not action.main_target == prev_main_target:
+			Util.get_player().boost_queue.queue_text("Spaced out!", Color(0.0, 0.602, 0.186))
+	else:
+		action.targets = [RandomService.array_pick_random('true_random', BattleService.ongoing_battle.cogs)]
+		if not action.targets[0] == prev_targets[0]:
+			Util.get_player().boost_queue.queue_text("Spaced out!", Color(0.0, 0.602, 0.186))
+	action.special_action_exclude = true

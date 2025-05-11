@@ -1,308 +1,313 @@
-[gd_resource type="Resource" script_class="ItemAccessory" load_steps=42 format=3 uid="uid://cvu060gbvc1k4"]
+[gd_resource type="Resource" script_class="ItemAccessory" load_steps=41 format=3 uid="uid://c2s4julwd7fyq"]
 
-[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_vydcw"]
-[ext_resource type="Script" uid="uid://c4eyu1xvv7h2l" path="res://objects/items/classes/head_placement.gd" id="2_s00qu"]
-[ext_resource type="Texture2D" uid="uid://crvbftknem4hm" path="res://models/accessories/glasses/alien_glasses/alien_glasses.png" id="3_0ocmf"]
-[ext_resource type="Script" uid="uid://5ip4t1qyx0xy" path="res://objects/items/custom/item_alien_glasses.gd" id="4_x4lf6"]
-[ext_resource type="PackedScene" uid="uid://cj1r8j44xbq5i" path="res://models/accessories/glasses/alien_glasses/tt_m_chr_avt_acc_msk_alienGlasses.glb" id="5_iysdf"]
-[ext_resource type="AudioStream" uid="uid://8vjo40mj15u4" path="res://audio/sfx/items/SZ_MM_fanfare.ogg" id="6_medst"]
-[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="7_b7kbe"]
+[ext_resource type="Script" uid="uid://fb0tqfojo57q" path="res://objects/items/classes/accessory_placement.gd" id="1_4dai8"]
+[ext_resource type="Script" uid="uid://c4eyu1xvv7h2l" path="res://objects/items/classes/head_placement.gd" id="2_usai5"]
+[ext_resource type="Texture2D" uid="uid://vle5e3nk3oe" path="res://models/accessories/glasses/alien_glasses/tt_m_chr_avt_acc_msk_alien_glasses-pix-2.png" id="3_4dai8"]
+[ext_resource type="PackedScene" uid="uid://cj1r8j44xbq5i" path="res://models/accessories/glasses/alien_glasses/tt_m_chr_avt_acc_msk_alienGlasses.glb" id="4_4dai8"]
+[ext_resource type="Script" uid="uid://cnr3ok5awe3y2" path="res://objects/items/custom/item_alien_glasses.gd" id="4_usai5"]
+[ext_resource type="Script" uid="uid://dvu24b3o8i3sj" path="res://objects/items/classes/item_accessory.gd" id="5_0ocmf"]
 
-[sub_resource type="Resource" id="Resource_1bhe6"]
-script = ExtResource("2_s00qu")
-species = 8
-head_index = 3
-position = Vector3(-0.01, -0.03, 0.12)
-rotation = Vector3(-6.41, 0, 0)
-scale = Vector3(0.41, 0.37, 0.32)
-
-[sub_resource type="Resource" id="Resource_r4jvb"]
-script = ExtResource("2_s00qu")
-species = 8
-head_index = 2
-position = Vector3(0, 0, 0.1)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.29, 0.32)
-
-[sub_resource type="Resource" id="Resource_81ypx"]
-script = ExtResource("2_s00qu")
-species = 8
-head_index = 1
-position = Vector3(-0.01, -0.03, 0.12)
-rotation = Vector3(-6.41, 0, 0)
-scale = Vector3(0.41, 0.37, 0.32)
-
-[sub_resource type="Resource" id="Resource_gyjxr"]
-script = ExtResource("2_s00qu")
-species = 8
+[sub_resource type="Resource" id="Resource_q57fn"]
+script = ExtResource("2_usai5")
+species = 0
 head_index = 0
-position = Vector3(0, 0, 0.1)
+position = Vector3(0.01, 0.33, 0.1)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.29, 0.32)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_skm27"]
-script = ExtResource("2_s00qu")
-species = 7
-head_index = 0
-position = Vector3(0, 0.35, 0.1)
-rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
-
-[sub_resource type="Resource" id="Resource_7kwdy"]
-script = ExtResource("2_s00qu")
-species = 7
+[sub_resource type="Resource" id="Resource_q42nf"]
+script = ExtResource("2_usai5")
+species = 0
 head_index = 1
-position = Vector3(0, 0.35, 0.1)
+position = Vector3(0.01, 0.33, 0.1)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_tubqh"]
-script = ExtResource("2_s00qu")
-species = 7
+[sub_resource type="Resource" id="Resource_rd633"]
+script = ExtResource("2_usai5")
+species = 0
 head_index = 2
-position = Vector3(0, 0.35, 0.1)
+position = Vector3(0.01, 0.26, 0.1)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_owck3"]
-script = ExtResource("2_s00qu")
-species = 7
+[sub_resource type="Resource" id="Resource_jtby2"]
+script = ExtResource("2_usai5")
+species = 0
 head_index = 3
-position = Vector3(0, 0.35, 0.1)
+position = Vector3(0.01, 0.26, 0.1)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_b6rv5"]
-script = ExtResource("2_s00qu")
+[sub_resource type="Resource" id="Resource_e5qpi"]
+script = ExtResource("2_usai5")
+species = 1
+head_index = 3
+position = Vector3(0, 0.03, 0.21)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.36, 0.36, 0.36)
+
+[sub_resource type="Resource" id="Resource_u4vnh"]
+script = ExtResource("2_usai5")
+species = 1
+head_index = 2
+position = Vector3(0, 0.03, 0.21)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.36, 0.36, 0.36)
+
+[sub_resource type="Resource" id="Resource_f5d13"]
+script = ExtResource("2_usai5")
+species = 1
+head_index = 1
+position = Vector3(0, 0.03, 0.21)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.36, 0.36, 0.36)
+
+[sub_resource type="Resource" id="Resource_x4g72"]
+script = ExtResource("2_usai5")
+species = 1
+head_index = 0
+position = Vector3(0, 0.03, 0.21)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.36, 0.36, 0.36)
+
+[sub_resource type="Resource" id="Resource_2tnfx"]
+script = ExtResource("2_usai5")
+species = 2
+head_index = 0
+position = Vector3(0.01, 0.4, 0.25)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_woxkm"]
+script = ExtResource("2_usai5")
+species = 2
+head_index = 1
+position = Vector3(0.01, 0.4, 0.25)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_j2kcf"]
+script = ExtResource("2_usai5")
+species = 2
+head_index = 2
+position = Vector3(0.01, 0.4, 0.25)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_sh7m2"]
+script = ExtResource("2_usai5")
+species = 2
+head_index = 3
+position = Vector3(0.01, 0.4, 0.25)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_c4xdi"]
+script = ExtResource("2_usai5")
+species = 3
+head_index = 3
+position = Vector3(0, 0.17, 0.28)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.38, 0.41, 0.33)
+
+[sub_resource type="Resource" id="Resource_uorpx"]
+script = ExtResource("2_usai5")
+species = 3
+head_index = 2
+position = Vector3(0, 0.17, 0.28)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.38, 0.41, 0.33)
+
+[sub_resource type="Resource" id="Resource_svvjw"]
+script = ExtResource("2_usai5")
+species = 3
+head_index = 1
+position = Vector3(0, 0.17, 0.28)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.38, 0.41, 0.33)
+
+[sub_resource type="Resource" id="Resource_8j8f6"]
+script = ExtResource("2_usai5")
+species = 3
+head_index = 0
+position = Vector3(0, 0.17, 0.28)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.38, 0.41, 0.33)
+
+[sub_resource type="Resource" id="Resource_ymhoe"]
+script = ExtResource("2_usai5")
+species = 4
+head_index = 0
+position = Vector3(0.01, 0.21, 0.17)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="Resource" id="Resource_dkjt4"]
+script = ExtResource("2_usai5")
+species = 4
+head_index = 1
+position = Vector3(0.01, 0.21, 0.17)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="Resource" id="Resource_0qsk0"]
+script = ExtResource("2_usai5")
+species = 4
+head_index = 2
+position = Vector3(0.01, 0.21, 0.17)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="Resource" id="Resource_gh4uu"]
+script = ExtResource("2_usai5")
+species = 4
+head_index = 3
+position = Vector3(0.01, 0.21, 0.17)
+rotation = Vector3(-9.71, 0, 0)
+scale = Vector3(0.25, 0.25, 0.25)
+
+[sub_resource type="Resource" id="Resource_uwcri"]
+script = ExtResource("2_usai5")
+species = 5
+head_index = 3
+position = Vector3(0.01, 0.53, 0.01)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.35, 0.35, 0.35)
+
+[sub_resource type="Resource" id="Resource_qifjg"]
+script = ExtResource("2_usai5")
+species = 5
+head_index = 2
+position = Vector3(0.01, 0.46, 0.2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_4v2d8"]
+script = ExtResource("2_usai5")
+species = 5
+head_index = 1
+position = Vector3(0.01, 0.53, 0.01)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.35, 0.35, 0.35)
+
+[sub_resource type="Resource" id="Resource_ckb4y"]
+script = ExtResource("2_usai5")
+species = 5
+head_index = 0
+position = Vector3(0.01, 0.46, 0.2)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
+
+[sub_resource type="Resource" id="Resource_y4ho7"]
+script = ExtResource("2_usai5")
 species = 6
 head_index = 1
-position = Vector3(0, 0.5, 0.1)
+position = Vector3(0.01, 0.44, 0.11)
 rotation = Vector3(0, 0, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
-[sub_resource type="Resource" id="Resource_61heh"]
-script = ExtResource("2_s00qu")
+[sub_resource type="Resource" id="Resource_3pp7v"]
+script = ExtResource("2_usai5")
 species = 6
 head_index = 0
-position = Vector3(0, 0.5, 0.1)
+position = Vector3(0.01, 0.44, 0.11)
 rotation = Vector3(0, 0, 0)
 scale = Vector3(0.4, 0.4, 0.4)
 
-[sub_resource type="Resource" id="Resource_d8a4r"]
-script = ExtResource("2_s00qu")
-species = 5
-head_index = 1
-position = Vector3(0.01, 0.7, 0)
-rotation = Vector3(2, 0, 0)
-scale = Vector3(0.4, 0.4, 0.4)
-
-[sub_resource type="Resource" id="Resource_kp1lm"]
-script = ExtResource("2_s00qu")
-species = 5
+[sub_resource type="Resource" id="Resource_kocle"]
+script = ExtResource("2_usai5")
+species = 7
 head_index = 0
-position = Vector3(0.01, 0.57, 0.1)
+position = Vector3(0.01, 0.24, 0.15)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
+scale = Vector3(0.25, 0.25, 0.25)
 
-[sub_resource type="Resource" id="Resource_tw5br"]
-script = ExtResource("2_s00qu")
-species = 5
-head_index = 2
-position = Vector3(0.01, 0.57, 0.1)
+[sub_resource type="Resource" id="Resource_s3jjp"]
+script = ExtResource("2_usai5")
+species = 7
+head_index = 1
+position = Vector3(0.01, 0.24, 0.15)
 rotation = Vector3(0, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
+scale = Vector3(0.25, 0.25, 0.25)
 
-[sub_resource type="Resource" id="Resource_wpoqb"]
-script = ExtResource("2_s00qu")
-species = 5
-head_index = 3
-position = Vector3(0, 0.5, 0)
-rotation = Vector3(-10, 0, 0)
-scale = Vector3(0.4, 0.4, 0.4)
-
-[sub_resource type="Resource" id="Resource_nh07q"]
-script = ExtResource("2_s00qu")
-species = 4
-head_index = 3
-position = Vector3(0, 0.19, 0.09)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.27, 0.24, 0.27)
-
-[sub_resource type="Resource" id="Resource_o6tnk"]
-script = ExtResource("2_s00qu")
-species = 4
+[sub_resource type="Resource" id="Resource_dyltl"]
+script = ExtResource("2_usai5")
+species = 7
 head_index = 2
-position = Vector3(0, 0.19, 0.09)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.27, 0.24, 0.27)
+position = Vector3(0.01, 0.24, 0.15)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.25, 0.25, 0.25)
 
-[sub_resource type="Resource" id="Resource_88h5q"]
-script = ExtResource("2_s00qu")
-species = 4
-head_index = 1
-position = Vector3(0, 0.19, 0.09)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.27, 0.24, 0.27)
-
-[sub_resource type="Resource" id="Resource_jlrsp"]
-script = ExtResource("2_s00qu")
-species = 4
-head_index = 0
-position = Vector3(0, 0.19, 0.09)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.27, 0.24, 0.27)
-
-[sub_resource type="Resource" id="Resource_k44ws"]
-script = ExtResource("2_s00qu")
-species = 3
-head_index = 0
-position = Vector3(0, 0.15, 0.16)
-rotation = Vector3(-1.76, 0, 0)
-scale = Vector3(0.37, 0.34, 0.36)
-
-[sub_resource type="Resource" id="Resource_tno1b"]
-script = ExtResource("2_s00qu")
-species = 3
-head_index = 1
-position = Vector3(0, 0.15, 0.25)
-rotation = Vector3(-1.76, 0, 0)
-scale = Vector3(0.37, 0.34, 0.36)
-
-[sub_resource type="Resource" id="Resource_advtw"]
-script = ExtResource("2_s00qu")
-species = 3
-head_index = 2
-position = Vector3(0, 0.15, 0.25)
-rotation = Vector3(-1.76, 0, 0)
-scale = Vector3(0.37, 0.34, 0.36)
-
-[sub_resource type="Resource" id="Resource_hu7yn"]
-script = ExtResource("2_s00qu")
-species = 3
+[sub_resource type="Resource" id="Resource_6yeml"]
+script = ExtResource("2_usai5")
+species = 7
 head_index = 3
-position = Vector3(0, 0.15, 0.16)
-rotation = Vector3(-1.76, 0, 0)
-scale = Vector3(0.37, 0.34, 0.36)
+position = Vector3(0.01, 0.24, 0.15)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.25, 0.25, 0.25)
 
-[sub_resource type="Resource" id="Resource_lgvs7"]
-script = ExtResource("2_s00qu")
-species = 2
+[sub_resource type="Resource" id="Resource_w3j28"]
+script = ExtResource("2_usai5")
+species = 8
 head_index = 3
-position = Vector3(0, 0.39, 0.25)
-rotation = Vector3(-8.27, 0, 0)
-scale = Vector3(0.31, 0.29, 0.21)
+position = Vector3(0.01, -0.04, 0.19)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_nodx3"]
-script = ExtResource("2_s00qu")
-species = 2
+[sub_resource type="Resource" id="Resource_4q183"]
+script = ExtResource("2_usai5")
+species = 8
 head_index = 2
-position = Vector3(0, 0.39, 0.25)
-rotation = Vector3(-8.27, 0, 0)
-scale = Vector3(0.31, 0.29, 0.21)
+position = Vector3(0.01, -0.04, 0.19)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_4d0h0"]
-script = ExtResource("2_s00qu")
-species = 2
+[sub_resource type="Resource" id="Resource_ulkq3"]
+script = ExtResource("2_usai5")
+species = 8
 head_index = 1
-position = Vector3(0, 0.39, 0.25)
-rotation = Vector3(-8.27, 0, 0)
-scale = Vector3(0.31, 0.29, 0.27)
+position = Vector3(0.01, -0.04, 0.19)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
 
-[sub_resource type="Resource" id="Resource_tvmqo"]
-script = ExtResource("2_s00qu")
-species = 2
+[sub_resource type="Resource" id="Resource_uixbd"]
+script = ExtResource("2_usai5")
+species = 8
 head_index = 0
-position = Vector3(0, 0.39, 0.25)
-rotation = Vector3(-8.27, 0, 0)
-scale = Vector3(0.31, 0.29, 0.3)
-
-[sub_resource type="Resource" id="Resource_b1pd7"]
-script = ExtResource("2_s00qu")
-species = 1
-head_index = 0
-position = Vector3(0, 0.13, 0.2)
-rotation = Vector3(-10.74, 0, 0)
-scale = Vector3(0.36, 0.34, 0.35)
-
-[sub_resource type="Resource" id="Resource_qefl7"]
-script = ExtResource("2_s00qu")
-species = 1
-head_index = 1
-position = Vector3(0, 0.11, 0.13)
-rotation = Vector3(-10.74, 0, 0)
-scale = Vector3(0.36, 0.34, 0.35)
-
-[sub_resource type="Resource" id="Resource_rcccu"]
-script = ExtResource("2_s00qu")
-species = 1
-head_index = 2
-position = Vector3(0, 0.11, 0.13)
-rotation = Vector3(-10.74, 0, 0)
-scale = Vector3(0.36, 0.34, 0.35)
-
-[sub_resource type="Resource" id="Resource_csrxa"]
-script = ExtResource("2_s00qu")
-species = 1
-head_index = 3
-position = Vector3(0, 0.13, 0.16)
-rotation = Vector3(-10.74, 0, 0)
-scale = Vector3(0.36, 0.34, 0.35)
-
-[sub_resource type="Resource" id="Resource_uakle"]
-script = ExtResource("2_s00qu")
-species = 0
-head_index = 3
-position = Vector3(0, 0.25, 0.1)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
-
-[sub_resource type="Resource" id="Resource_6s28k"]
-script = ExtResource("2_s00qu")
-species = 0
-head_index = 2
-position = Vector3(0, 0.25, 0.1)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
-
-[sub_resource type="Resource" id="Resource_bvul3"]
-script = ExtResource("2_s00qu")
-species = 0
-head_index = 1
-position = Vector3(0, 0.25, 0.1)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
-
-[sub_resource type="Resource" id="Resource_00j2n"]
-script = ExtResource("2_s00qu")
-species = 0
-head_index = 0
-position = Vector3(0, 0.25, 0.1)
-rotation = Vector3(-14.49, 0, 0)
-scale = Vector3(0.32, 0.32, 0.32)
+position = Vector3(0.01, -0.04, 0.17)
+rotation = Vector3(0, 0, 0)
+scale = Vector3(0.3, 0.3, 0.3)
 
 [resource]
-script = ExtResource("7_b7kbe")
-accessory_placements = Array[ExtResource("1_vydcw")]([SubResource("Resource_1bhe6"), SubResource("Resource_r4jvb"), SubResource("Resource_81ypx"), SubResource("Resource_gyjxr"), SubResource("Resource_skm27"), SubResource("Resource_7kwdy"), SubResource("Resource_tubqh"), SubResource("Resource_owck3"), SubResource("Resource_b6rv5"), SubResource("Resource_61heh"), SubResource("Resource_d8a4r"), SubResource("Resource_kp1lm"), SubResource("Resource_tw5br"), SubResource("Resource_wpoqb"), SubResource("Resource_nh07q"), SubResource("Resource_o6tnk"), SubResource("Resource_88h5q"), SubResource("Resource_jlrsp"), SubResource("Resource_k44ws"), SubResource("Resource_tno1b"), SubResource("Resource_advtw"), SubResource("Resource_hu7yn"), SubResource("Resource_lgvs7"), SubResource("Resource_nodx3"), SubResource("Resource_4d0h0"), SubResource("Resource_tvmqo"), SubResource("Resource_b1pd7"), SubResource("Resource_qefl7"), SubResource("Resource_rcccu"), SubResource("Resource_csrxa"), SubResource("Resource_uakle"), SubResource("Resource_6s28k"), SubResource("Resource_bvul3"), SubResource("Resource_00j2n")])
-qualitoon = 2
+script = ExtResource("5_0ocmf")
+accessory_placements = Array[ExtResource("1_4dai8")]([SubResource("Resource_q57fn"), SubResource("Resource_q42nf"), SubResource("Resource_rd633"), SubResource("Resource_jtby2"), SubResource("Resource_e5qpi"), SubResource("Resource_u4vnh"), SubResource("Resource_f5d13"), SubResource("Resource_x4g72"), SubResource("Resource_2tnfx"), SubResource("Resource_woxkm"), SubResource("Resource_j2kcf"), SubResource("Resource_sh7m2"), SubResource("Resource_c4xdi"), SubResource("Resource_uorpx"), SubResource("Resource_svvjw"), SubResource("Resource_8j8f6"), SubResource("Resource_ymhoe"), SubResource("Resource_dkjt4"), SubResource("Resource_0qsk0"), SubResource("Resource_gh4uu"), SubResource("Resource_uwcri"), SubResource("Resource_qifjg"), SubResource("Resource_4v2d8"), SubResource("Resource_ckb4y"), SubResource("Resource_y4ho7"), SubResource("Resource_3pp7v"), SubResource("Resource_kocle"), SubResource("Resource_s3jjp"), SubResource("Resource_dyltl"), SubResource("Resource_6yeml"), SubResource("Resource_w3j28"), SubResource("Resource_4q183"), SubResource("Resource_ulkq3"), SubResource("Resource_uixbd")])
+item_tags = null
+qualitoon = 0
 rarity = 0
 evergreen = false
 realtime = false
 slot = 2
-world_scale = 0.15
+world_scale = 0.125
+world_y_offset = 0.0
 want_ui_spin = true
-ui_cam_offset = 0.25
-item_name = "Alien glasses 👽"
-item_description = "bogos binted?"
-big_description = "On every 7th toon action, the main target on that turn will lose 15% of their current health"
-model = ExtResource("5_iysdf")
-pickup_sfx = ExtResource("6_medst")
-stats_add = {}
+ui_cam_offset = 0.2
+item_name = "Alien Glasses"
+item_description = "Out of this world!"
+big_description = "+10% Luck
++5% Damage
+15% chance for Gags to target a random Cog."
+model = ExtResource("4_4dai8")
+stats_add = {
+"damage": 0.05,
+"luck": 0.1
+}
 stats_multiply = {}
 player_values = {}
 arbitrary_data = {}
-item_script = ExtResource("4_x4lf6")
+item_script = ExtResource("4_usai5")
 remember_item = true
-icon = ExtResource("3_0ocmf")
+icon = ExtResource("3_4dai8")
 shop_category_title = "Boost Item"
 shop_category_color = Color(0.196078, 0.580392, 0.917647, 1)
 force_show_shop_category = false
