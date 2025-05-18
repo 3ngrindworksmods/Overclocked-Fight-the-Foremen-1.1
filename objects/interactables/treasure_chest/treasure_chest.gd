@@ -9,6 +9,7 @@ var SFX_OPEN: AudioStreamOggVorbis
 @export var override_replacement_rolls := false
 @export var override_item: Item
 @export var unopenable := false
+@export var scripted_rebalance := false
 
 @export var item_pool: ItemPool:
 	set(x):
@@ -112,6 +113,27 @@ func set_light_level(level : float, shader : ShaderMaterial) -> void:
 	shader.set_shader_parameter('strength', level)
 
 func assign_item(world_item: WorldItem):
+	if scripted_rebalance:
+			if Util.floor_number == 0:
+				world_item.item = load("res://objects/items/resources/accessories/glasses/monocle.tres")
+				return
+			if Util.floor_number == 1:
+				world_item.item = load("res://objects/items/resources/accessories/hats/heart_headband.tres")
+				return
+			if Util.floor_number == 2:
+				world_item.item = load("res://objects/items/resources/accessories/hats/miner_hat.tres")
+				return
+			if Util.floor_number == 3:
+				#world_item.item = load("res://objects/items/resources/accessories/hats/rainbow_wig.tres")
+				world_item.item = load("res://objects/items/resources/accessories/hats/rainbow_wig.tres")
+				#res://objects/items/resources/accessories/hats/pilot_hat.tres
+				return
+			if Util.floor_number == 4:
+				world_item.item = load("res://objects/items/resources/accessories/backpacks/small_pouch.tres")
+				return
+			if Util.floor_number == 5:
+				world_item.item = load("res://objects/items/resources/accessories/backpacks/gag_pack.tres")
+				return	
 	if scripted_progression and SCRIPTED_PROGRESSION_ITEMS[Util.floor_number] != null:
 		var scripted_item = SCRIPTED_PROGRESSION_ITEMS[Util.floor_number]
 		# 5th floor has a +8 laff boost

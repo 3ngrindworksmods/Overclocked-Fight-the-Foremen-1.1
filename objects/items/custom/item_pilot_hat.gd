@@ -34,13 +34,13 @@ func refresh_turns() -> void:
 
 func on_action_finished(action: BattleAction) -> void:
 	if damage_multiplied:
-		print(action.action_name, " last action had its damage multiplied")
+		#print(action.action_name, " last action had its damage multiplied")
 		damage_multiplied = false
 
 func on_round_ended(manager: BattleManager) -> void:
 	var turns_remaining_in_cycle = activate_turn - (turns_used % activate_turn)
 	var activation_turn_next_round = turns_remaining_in_cycle - 1     
-	if turns_remaining_in_cycle <= Util.get_player().stats.max_turns:
+	if turns_remaining_in_cycle <= Util.get_player().stats.turns:
 		var dict = {}
 		dict[activation_turn_next_round] = DMG_BONUS
 		manager.battle_ui.s_damage_drifted.emit(dict)

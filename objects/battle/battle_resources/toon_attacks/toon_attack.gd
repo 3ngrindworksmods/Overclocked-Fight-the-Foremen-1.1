@@ -7,7 +7,7 @@ class_name ToonAttack
 
 # Used in the UI to temporarily store the price of a gag
 var price: int
-
+var sheer_force = false
 signal s_hit
 signal s_missed
 

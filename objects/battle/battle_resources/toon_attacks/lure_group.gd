@@ -74,7 +74,7 @@ func action():
 				manager.battle_text(target, "IMMUNE")
 				target.speak("Nah")
 				continue
-			manager.battle_text(target, "Damage Down!", BattleText.colors.orange[0], BattleText.colors.orange[1])
+			if not sheer_force: manager.battle_text(target, "Damage Down!", BattleText.colors.orange[0], BattleText.colors.orange[1])
 			if cog_anim == 'landing':
 				animate_magnet_pull(target)
 			else:

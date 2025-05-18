@@ -43,6 +43,7 @@ func action() -> void:
 	set_camera_angle('SIDE_RIGHT')
 	manager.battle_text(cog,str(-cog.stats.hp))
 	cog.stats.hp = 0
+	cog.last_damage_source = "Trap"
 	battle_node.add_child(cannon)
 	cannon.global_position = cog.global_position
 	cannon.global_rotation = cog.global_rotation

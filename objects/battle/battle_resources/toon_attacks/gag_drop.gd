@@ -23,6 +23,8 @@ func get_stats() -> String:
 	return string
 
 func apply_debuff(target: Cog, damage_dealt: int) -> void:
+	if sheer_force:
+		return
 	var new_effect: StatEffectAftershock = DEBUFF.duplicate()
 	new_effect.amount = roundi(damage_dealt * 0.5)
 	new_effect.description = "%d damage per round" % new_effect.amount

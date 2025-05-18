@@ -1,7 +1,6 @@
 Boss Cogs will unlure after one round.
 Treasure chests may be hidden, keep a sharp eye out!
 Use your Gag Points wisely!
-Anomalies can have good, bad or neutral effects.
 Check your ToonTasks on the pause menu!
 Some items are exclusive to certain item pools.
 Not all items are good(Fedora).
@@ -11,7 +10,6 @@ Toon-Up items can save you in a pinch!
 Quest rerolls restock to 4 on every floor, Use em!
 You can maintain the momentum from moving platforms with a jump.
 Jumping while on conveyor belts can give you more control.
-Accessories you pick up won't override the effects of others.
 Strange anomalies will appear after floor 2.
 You can walk diagonally on laser grids if you're careful.
 Battle speed can be adjusted in the Settings menu.
@@ -25,6 +23,7 @@ Squirt can make Cogs more vulnerable to damage.
 Trap deals the most damage, but requires a setup turn.
 Single lures stun the Cog, group lures lower the damage of up to 3.
 Drop has the highest combo damage multiplier.
+Attacking a cog multiple times with the same gag track will result in combo damage.
 Sound hits 3 Cogs, with the pink arrows indicating which take splash damage.
 Throw's self heal is the best way to maintain your laff!
 The Scapegoat's name is Kilo Kidd.

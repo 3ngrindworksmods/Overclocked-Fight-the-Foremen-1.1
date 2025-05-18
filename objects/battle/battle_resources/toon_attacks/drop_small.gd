@@ -66,7 +66,7 @@ func action():
 			var damage_dealt: int = manager.affect_target(target, damage)
 			apply_debuff(target, damage_dealt)
 			await Task.delay(0.5)
-			manager.battle_text(target, "Aftershock!", BattleText.colors.orange[0], BattleText.colors.orange[1])
+			if not sheer_force: manager.battle_text(target, "Aftershock!", BattleText.colors.orange[0], BattleText.colors.orange[1])
 		else:
 			manager.battle_text(target, "IMMUNE")
 		await manager.barrier(target.animator.animation_finished, 4.0)

@@ -12,8 +12,8 @@ const ANOMALIES_POSITIVE: Array[String] = [
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_overheal.gd",
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_record_profits.gd",
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_organic_gags.gd",
-	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_level_down.gd",
-	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_inspiration.gd",
+	#"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_level_down.gd",
+	#"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_inspiration.gd",
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_victory_cry.gd",
 ]
 const ANOMALIES_NEUTRAL: Array[String] = [
@@ -26,7 +26,9 @@ const ANOMALIES_NEUTRAL: Array[String] = [
 ]
 const ANOMALIES_NEGATIVE: Array[String] = [
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_level_up.gd",
-	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_out_of_touch.gd",
+	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_bull_market.gd",
+	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_cog_damage_up.gd",
+	#"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_out_of_touch.gd",
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_safety_violations.gd",
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_time_crunch.gd",
 	"res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_inflation.gd",
@@ -35,11 +37,11 @@ const ANOMALIES_NEGATIVE: Array[String] = [
 
 const LEVEL_RANGES: Dictionary[int, Array] = {
 	0: [1, 3],
-	1: [2, 5],
-	2: [3, 7],
-	3: [6, 9],
-	4: [8, 12],
-	5: [9, 15],
+	1: [4, 5],
+	2: [6, 7],
+	3: [8, 9],
+	4: [10, 11],
+	5: [12, 14],
 }
 
 ## Floor difficulty from 0-5
@@ -223,3 +225,77 @@ func get_new_anomaly() -> Script:
 				new_anomaly = null
 				break
 	return new_anomaly
+
+func get_green_light_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_green_light.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	mods.append(loaded_mod)
+	return mods
+
+func get_gag_immunity_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_gag_immunities.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	mods.append(loaded_mod)
+	return mods
+func get_reorg_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_reorganization.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	mods.append(loaded_mod)
+	return mods
+func get_mixed_bag_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_mixed_bag.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	mods.append(loaded_mod)
+	return mods
+func get_no_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	return mods
+
+func all_negative_anomalies() -> Array[Script]:
+	var mods: Array[Script] = []
+	for i in range(min(3, ANOMALIES_NEGATIVE.size())):
+		var anomaly = ANOMALIES_NEGATIVE[i]
+		var loaded_mod: Script = Util.universal_load(anomaly)
+		mods.append(loaded_mod)
+	var green_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_green_light.gd" 
+	var loaded_green_mod: Script = Util.universal_load(green_mod)
+	mods.append(loaded_green_mod)
+	var immunity_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_gag_immunities.gd" 
+	var loaded_immunity_mod: Script = Util.universal_load(immunity_mod)
+	mods.append(loaded_immunity_mod)
+	
+	return mods
+func all_positive_anomalies() -> Array[Script]:
+	var mods: Array[Script] = []
+	for anomaly in ANOMALIES_POSITIVE :
+		var loaded_mod: Script = Util.universal_load(anomaly)
+		mods.append(loaded_mod) 
+	#var loaded_organic_mod: Script = Util.universal_load(organic_mod)
+	#mods.append(loaded_organic_mod) # adding it again so its easier
+	return mods
+	
+func scripted_details(anomaly_array) -> void:
+	clear()
+	anomalies = anomaly_array
+	anomaly_count = anomaly_array.size()
+	for anomaly: Script in anomaly_array:
+		modifiers.append(anomaly)
+	
+	floor_difficulty = Util.floor_number + 1
+	level_range.x = LEVEL_RANGES[floor_difficulty][0]
+	level_range.y = LEVEL_RANGES[floor_difficulty][1]
+	
+	# Add onto the room count for the difficulty
+	room_count += DIFFICULTY_ROOM_ADDITION * floor_difficulty
+	if floor_difficulty == 3: room_count = room_count * 1.2
+	if room_count % 2 == 0:
+		room_count += 1
+	#print("FLOOR 3 MMMARAAAARTON")
+	
+	# Get the default Cog Pool if none specified
+	if not cog_pool:
+		cog_pool = FALLBACK_COG_POOL.load()

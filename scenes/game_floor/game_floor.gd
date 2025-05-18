@@ -62,6 +62,11 @@ func _ready() -> void:
 	generate_floor()
 	if SaveFileService.run_file:
 		SaveFileService.run_file.floor_choice = null
+	print(floor_variant.floor_name)
+	if floor_variant.floor_name == "Survive The Foremen":
+		Util.survive_the_foreman = true
+	else:
+		Util.survive_the_foreman = false
 
 func generate_floor() -> void:
 	if debug_floor_variant:
@@ -130,6 +135,7 @@ func generate_floor() -> void:
 		player = load("res://objects/player/player.tscn").instantiate()
 		SceneLoader.add_persistent_node(player)
 	player.s_fell_out_of_world.connect(player_out_of_bounds)
+	player.stats.quest_rerolls = 4
 	
 	# Setup debug anomalies
 	for modifier in debug_anomalies:
@@ -161,10 +167,12 @@ func generate_floor() -> void:
 		player.teleport_in(true)
 	if Util.window_focused:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
+	technical_debt_music()
 	# Set the proper default bg music
 	if not floor_rooms.background_music.is_empty():
 		AudioManager.set_default_music(floor_rooms.background_music[RandomService.randi_channel('true_random') % floor_rooms.background_music.size()])
+		if floor_variant.floor_name == "The Factory":
+			if Util.floor_number < 4: AudioManager.set_default_music(load('res://audio/music/installer.ogg'))
 
 func get_random_connector_room() -> PackedScene:
 	return floor_rooms.connectors[RandomService.randi_channel('true_random') % floor_rooms.connectors.size()]
@@ -371,6 +379,14 @@ func _capture_debug_message(message: String, data: Array) -> bool:
 	elif message == 'game_floor:set_floor_variant':
 		debug_floor_variant = load(data[0])
 	return false
+
+func technical_debt_music() -> void:
+	print(floor_variant.floor_name)
+	if floor_rooms.battle_music.size() >= 3:
+		if Util.floor_number <= 3:
+			floor_rooms.battle_music = [floor_rooms.battle_music[0]]
+		else:
+			floor_rooms.battle_music = [floor_rooms.battle_music[1], floor_rooms.battle_music[2]]
 
 #region GAME TRACKING
 ## Game Signals

@@ -359,7 +359,7 @@ func lose():
 		# Thog don't care if we're already in the sad state
 		return
 	
-	SaveFileService.on_game_over()
+	#SaveFileService.on_game_over()
 	state = PlayerState.SAD
 	Util.stuck_lock = false
 	set_animation('lose')

@@ -47,7 +47,7 @@ func action():
 	# If hit, make cog reach for dollar
 	if hit and not target.v1_5:
 		target.set_animation('walknreach')
-		manager.battle_text(target, "Stunned!", BattleText.colors.orange[0], BattleText.colors.orange[1])
+		if not sheer_force: manager.battle_text(target, "Stunned!", BattleText.colors.orange[0], BattleText.colors.orange[1])
 		await target.animator.animation_finished
 		if target.trap:
 			trap_gags.append(target.trap)

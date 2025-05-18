@@ -102,7 +102,7 @@ func get_next_floors() -> void:
 
 func final_boss_time_baby() -> void:
 	var final_floor := FINAL_FLOOR_VARIANT.duplicate()
-	final_floor.level_range = Vector2i(11, 13)
+	final_floor.level_range = Vector2i(12, 14)
 	next_floors = [final_floor]
 	$ElevatorUI.floors = next_floors
 	$ElevatorUI.set_floor_index(0)
@@ -121,6 +121,7 @@ func add_more_floors(floor_variants) -> void:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
 		add_reorg_floor(floor_variants)
+		add_mixed_bag_floor(floor_variants)
 		add_gag_immune_floor(floor_variants)
 		add_chaos_floor(floor_variants)
 
@@ -162,6 +163,17 @@ func add_reorg_floor(floor_variants) -> void:
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
+
+func add_mixed_bag_floor(floor_variants) -> void:
+		var random_floor = floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
+		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
+		var anom_array = new_floor.get_mixed_bag_anomaly()
+		new_floor.scripted_details(anom_array)
+		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		while not new_floor.reward:
+			new_floor.randomize_item()
+		next_floors.append(new_floor)
+
 func add_positive_floor(floor_variants) -> void:
 		var random_floor = floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
 		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()

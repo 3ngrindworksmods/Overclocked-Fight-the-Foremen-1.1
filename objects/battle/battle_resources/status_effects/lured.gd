@@ -63,3 +63,8 @@ func get_effect_string() -> String:
 
 func get_status_name() -> String:
 	return "Lured"
+
+func ts_pmo() -> void:
+	var walk_tween := create_walk_tween()
+	await walk_tween.finished
+	walk_tween.kill()

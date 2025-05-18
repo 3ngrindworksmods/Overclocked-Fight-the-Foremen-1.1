@@ -4,7 +4,7 @@ extends HBoxContainer
 var panels: Array[TextureRect] = []
 var paneleffects = {}
 var itemeffects = {}
-
+@onready var item_panel = $"../BattleMenuContainer/BottomRight/SOS"
 ## The base gag panel
 @onready var gag_panel := $SelectedGag
 @onready var battle_ui : BattleUI = get_parent()
@@ -32,6 +32,7 @@ func configure_panel(panel) -> void:
 		
 func update_panels() -> void:
 	# Amount of panels is based on Player turns (-1)
+	#item_panel.disable()
 	var panels_to_make: int = manager.battle_stats[Util.get_player()].turns - panels.size()
 	if panels_to_make > 0:
 		# Append the panels
@@ -101,8 +102,9 @@ func hover_slot(idx: int) -> void:
 	#manager.s_gag_modified.connect(color_panels) #idk man %5
 	var atk_string: String = ""
 	if itemeffects.has(idx):
-		atk_string += itemeffects[idx]
-		atk_string += "\n"
+		for effect in itemeffects[idx]:
+			atk_string += effect["desc"]
+			atk_string += "\n"	
 			
 	if paneleffects.has(idx) and paneleffects[idx] != 1:
 		#if paneleffects[idx] == 1 and not itemeffects.has(idx):
@@ -130,7 +132,34 @@ func reset_panel_effects(dict: Dictionary) -> void:
 	color_panels()
 func reset_item_effects(dict: Dictionary) -> void:
 	#lets hope I don't add anymore items that do turn specfic things
-	itemeffects = dict
+	for turn in dict:
+		var new_effect = dict[turn]  # Assume format: {"effect": int, "desc": str}
+		var effect_type = new_effect["effect"]
+		
+		# Initialize turn array if it doesn't exist
+		if not turn in itemeffects:
+			itemeffects[turn] = []
+		
+		# Handle Damage Reflection stacking (effect == 2)
+		if effect_type >= -1: # there will never be an effect type less then 0 im to lazy to change rn
+			#PLEASE CHANGE LATER THO
+			var found_existing = false
+			
+			# Check for existing damage reflection on this turn
+			for existing_effect in itemeffects[turn]:
+				if existing_effect["effect"] == new_effect["effect"]:
+					if existing_effect["effect"] >= 2:
+						existing_effect["value"] += new_effect["value"]
+						existing_effect["desc"] = "You will be dealt %d%% of the unboosted gag damage dealt this turn" % int(existing_effect["value"] * 100)
+						found_existing = true
+						break
+					else: 
+						found_existing = true
+						break
+			# If no existing reflection, add new entry
+			if not found_existing:
+				itemeffects[turn].append(new_effect)
+	
 	color_panels()
 func color_panels() -> void: # idk man %5
 	for panel in panels:
@@ -151,5 +180,5 @@ func stop_hover() -> void:
 func clear_panel_effects() -> void:
 
 	itemeffects.clear()
-	for i in 3:
+	for i in Util.player.stats.turns:
 		paneleffects[i] = 1

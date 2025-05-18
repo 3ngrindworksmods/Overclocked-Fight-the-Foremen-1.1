@@ -40,6 +40,7 @@ func participant_died(who: Node3D) -> void:
 func require_random_track() -> void:
 	for ban_effect in ban_effects:
 		if ban_effect and is_instance_valid(ban_effect):
+			print("banned previous banns")
 			manager.expire_status_effect(ban_effect)
 	if expires_this_round:
 		return
@@ -70,7 +71,7 @@ func get_description() -> String:
 func make_banned_effect(gags: Array[ToonAttack]) -> StatusEffect:
 	round+= 1
 	var banned_effect := GAG_BAN_EFFECT.duplicate()
-	banned_effect.rounds = rounds
+	banned_effect.rounds = 0
 	banned_effect.target = player
 	banned_effect.banned_color = Color.DARK_GREEN
 	banned_effect.gags = gags
@@ -81,6 +82,7 @@ func renew() -> void:
 func on_round_started(actions: Array[BattleAction]) -> void:
 	if rounds == 0:
 		expires_this_round = true
+	print(ban_effects)
 	for effect in ban_effects:
 		if typeof(effect) != TYPE_STRING:
 			if not effect.is_banned_gag_used(actions):

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CogDNA" load_steps=9 format=3 uid="uid://d3j6v3o7y5d0w"]
+[gd_resource type="Resource" script_class="CogDNA" load_steps=10 format=3 uid="uid://d3j6v3o7y5d0w"]
 
 [ext_resource type="Script" uid="uid://bb27him60xtnk" path="res://objects/battle/battle_resources/cog_attacks/cog_attack.gd" id="1_20sb0"]
 [ext_resource type="Resource" uid="uid://dimhdaxn1tyey" path="res://objects/battle/battle_resources/cog_attacks/resources/tee_off.tres" id="2_8503x"]
@@ -14,7 +14,7 @@
 script = ExtResource("2_x60dn")
 department = 0
 suit = 0
-cog_name = "The Mingler"
+cog_name = "The Factory Foreman"
 name_plural = ""
 name_prefix = ""
 name_suffix = ""
@@ -36,7 +36,7 @@ is_mod_cog = false
 is_admin = false
 health_mod = 1.0
 is_v2 = false
-battle_phrases = Array[String](["Are you sure you're ready to mingle?", "You don't know who you're mingling with.", "I'm going to mingle in your business.", "Ever mingle with the likes of me?", "You're mingling with defeat.", "Let's mingle.", "Well, isn't this cozy?", "Good, it takes two to mingle."])
+battle_phrases = Array[String](["Are you sure?", "Go ahead, make my day.", "I'm going to mingle in your business.", "@_@", "Had the best conversation with a lamp yesterday", "🤖", "Good, it takes two to mingle."])
 external_assets = {
 &"head_model": "",
 &"head_textures": []

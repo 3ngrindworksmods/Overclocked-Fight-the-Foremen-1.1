@@ -190,7 +190,6 @@ func someone_died(who: Node3D) -> void:
 		if who.v2:
 			create_v2_cog(who)
 		cogs.remove_at(cogs.find(who))
-	print(cogs.size(), cogs)
 	for i in range(cogs.size() - 1, -1, -1):
 		var cog = cogs[i]
 		if not cog.foreman or cog.stats.hp < 1:
@@ -331,7 +330,8 @@ func spawn_reward() -> void:
 				chest.item_pool = battle_node.item_pool
 			chest.override_replacement_rolls = RandomService.randi_channel('true_random') % 2 == 0		
 			if start_cog_size >= 4 and Util.floor_number < 4:
-				extra_chest()
+				if Util.floor_manager.floor_variant.floor_name == "The Factory"  or Util.floor_manager.floor_variant.floor_name == "The Mint":
+					extra_chest()
 			#chest2.override_replacement_rolls = RandomService.randi_channel('true_random') % 2 == 0
 func is_target_dead(target: Node3D) -> bool:
 	var health_ratio: float = float(target.stats.hp) / float(target.stats.max_hp)

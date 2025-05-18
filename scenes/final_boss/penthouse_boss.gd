@@ -31,7 +31,7 @@ var MUSIC_TRACK: AudioStream = load("res://audio/music/Bossbot_Entry_v2.ogg")
 var unlock_toon := false
 
 ## For battle tracking
-const COG_LEVEL_RANGE := Vector2i(11, 13)
+const COG_LEVEL_RANGE := Vector2i(12, 14)
 var boss_one_choice: CogDNA
 var boss_two_choice: CogDNA
 
@@ -108,8 +108,9 @@ func participant_died(who: Node3D) -> void:
 		boss_two_alive = false
 		a_boss_died()
 	elif who is Cog: #foreman
-		if elevator_cooldown < 2:
-			elevator_cooldown += 1
+		if not both_bosses_alive():
+			if elevator_cooldown < 2:
+				elevator_cooldown += 1
 		#print("stuff")
 
 func battle_ending() -> void:
@@ -216,7 +217,7 @@ func should_spawn_foreman() -> bool:
 		return false
 	#never when 4+ cogs huh? plus? 4 plus?
 	if battle.cogs.size() >= 4:
-		elevator_cooldown = 2
+		elevator_cooldown = 1
 		return false
 	if elevator_cooldown > 0:
 		elevator_cooldown -= 1

@@ -47,11 +47,11 @@ func action():
 		throwable.queue_free()
 		
 		var immune := get_immunity(cog)
-		
 		if not immune:
 			var throw_damage: int = manager.affect_target(cog, damage)
 			if user.throw_heals:
-				user.quick_heal(roundi(throw_damage * user.stats.get_stat("throw_heal_boost")))
+				if not sheer_force:
+					user.quick_heal(roundi(throw_damage * user.stats.get_stat("throw_heal_boost")))
 		else:
 			manager.battle_text(cog, "IMMUNE")
 		

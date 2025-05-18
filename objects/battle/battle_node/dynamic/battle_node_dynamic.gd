@@ -14,7 +14,8 @@ var justbc = 0
 		if Util.floor_number == 4:
 			MAX_DYNAMIC_COGS = 3
 		if Util.floor_number == 5:
-			MIN_DYNAMIC_COGS == 3
+			if not Util.survive_the_foreman:
+				MIN_DYNAMIC_COGS = 3
 		cog_range.x = clamp(cog_range.x, MIN_DYNAMIC_COGS, MAX_DYNAMIC_COGS)
 		cog_range.y = clamp(cog_range.y, cog_range.x, MAX_DYNAMIC_COGS)
 		if not cog_node:
@@ -38,7 +39,6 @@ func _ready() -> void:
 		super()
 
 func _refresh_cogs() -> void:
-	print("printing justbc in bn dynamic: ", justbc)
 	justbc+= 1
 	var cog_count : int
 	if Engine.is_editor_hint():
@@ -85,7 +85,7 @@ func rebalance_cogs(cog, cog_count) -> void:
 		cog.foreman = true
 		if cog_count >= 4:
 			cog.level_rebalance -= 2
-		# i hope this never runs
+		# i hope this never runs never its actually heat in stf, otft its mid af
 		if cog_count == 2:
 			cog.level_rebalance += 5
 	if Util.floor_number == 4:

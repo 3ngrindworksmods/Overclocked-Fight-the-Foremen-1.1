@@ -38,7 +38,7 @@ var attacks : Array[CogAttack]
 @export var skelecog := false # CHANGE TO TRUE AFTER DEMO
 @export var skelecog_chance := 10
 @export var fusion := false
-@export var foreman := true #change to TRUE
+@export var foreman := false #change to TRUE
 @export var fusion_chance := 0
 @export var virtual_cog := false
 @export var techbot := false 
@@ -182,6 +182,7 @@ func roll_for_level() -> void:
 		elif dna: 
 			custom_level_range = Vector2i(dna.level_low, dna.level_high)
 		level = RandomService.randi_range_channel('cog_levels', custom_level_range.x, custom_level_range.y)
+		print("level rebalance: ",level_rebalance)
 		level += level_rebalance
 	#if level <= 9: level = level + 3 I added this crap, removing it
 	# Allow for Cogs to be higher level than the floor intends

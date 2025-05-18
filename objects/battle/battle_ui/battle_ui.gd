@@ -11,6 +11,7 @@ class_name BattleUI
 
 # Bottom-right buttons
 @onready var fire_button := %Fire
+@onready var item_button := $BattleMenuContainer/BottomRight/SOS
 
 @onready var status_container: HBoxContainer = %StatusContainer
 
@@ -41,6 +42,7 @@ var remaining_turns: int:
 var selected_gags: Array[ToonAttack] = []
 var fire_action: ToonAttackFire
 var timer : GameTimer
+var binded = false
 var drift_effect_dict = {}
 
 func _ready():
@@ -221,7 +223,7 @@ func fire_pressed() -> void:
 	gag_selected(fire_action.duplicate())
 
 func check_pink_slips() -> void:
-	if Util.get_player().stats.pink_slips <= 0:
+	if Util.get_player().stats.pink_slips <= 0 or binded:
 		fire_button.disable()
 	else:
 		fire_button.enable()
@@ -242,3 +244,14 @@ func open_items() -> void:
 func refresh_tracks() -> void:
 	for track: TrackElement in gag_tracks.get_children():
 		track.refresh()
+
+func disable_items() -> void:
+	item_button.disable()
+	fire_button.disable()
+	binded = true
+
+func enable_items() -> void:
+		item_button.enable()
+		binded = false
+		check_pink_slips()
+	
