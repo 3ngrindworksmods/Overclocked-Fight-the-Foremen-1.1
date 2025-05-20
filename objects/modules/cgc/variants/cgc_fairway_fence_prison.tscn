@@ -103,15 +103,18 @@ custom_arm_tex = ExtResource("26_tglo8")
 custom_leg_tex = ExtResource("28_4vrvi")
 cog_name = "Armchair Manager"
 name_plural = ""
+name_prefix = ""
+name_suffix = ""
 head = ExtResource("29_tnhe2")
 head_scale = Vector3(1, 1, 1)
 head_pos = Vector3(0, 0, 0)
 scale = 7.0
 head_textures = Array[Texture2D]([ExtResource("30_5uri6")])
 hand_color = Color(0.94902, 0.74902, 0.74902, 1)
-head_color = null
+head_color = Color(1, 1, 1, 1)
 custom_nametag_height = 0.0
 custom_nametag_suffix = ""
+can_speak = true
 attacks = Array[ExtResource("23_n8mkc")]([ExtResource("24_pp6gi"), ExtResource("25_kuntj")])
 level_low = 1
 level_high = 12
@@ -119,6 +122,7 @@ status_effects = Array[ExtResource("32_6v7ah")]([])
 is_mod_cog = false
 is_admin = true
 health_mod = 1.0
+is_v2 = false
 battle_phrases = Array[String](["I'm gonna tell the boss about you!", "I may just be a flunky - but I'm real spunky.", "I'm going to use you to step up the corporate ladder.", "You're not going to like the way I work.", "The boss is counting on me to stop you.", "You'll have to go through me first.", "You're going to look good on my resume.", "I excel at Toon disposal.", "I'm sending you back to the playground.", "Let's see how you rate my job performance", "You're never going to meet my boss."])
 external_assets = {
 &"head_model": "",
@@ -458,7 +462,7 @@ curve = SubResource("Curve3D_qiapn")
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -22.5698, 0, -14.3526)
 cog_range = Vector2i(2, 3)
 cog_dist = 1.59
-cogs = [NodePath("Cogs/Cog6"), NodePath("Cogs/Cog7"), NodePath("Cogs/Cog8")]
+cogs = [null, null, null]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="BattleNodeDynamic" index="4"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.102386, 8.48587, -2.41779)

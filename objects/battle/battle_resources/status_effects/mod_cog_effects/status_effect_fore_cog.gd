@@ -24,39 +24,53 @@ const MOD_EFFECTS : Array[StatusEffect] = [ #res://objects/battle/battle_resourc
 
 ]
 
-var overchaged = preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_overcharged.tres")
+var overcharged = preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_overcharged.tres")
 const RESTRICTED_EFFECT_INDEXES := [0, 3, 5, 6, 9]  # techbot, drop_immunity, lure_immunity, troll, beneficiary for chartist pool in future
 const PENTHOUSE_FOREMAN_INDEXES := [2, 7, 8, 9]  # proxy+,damage_drift, larynx, beneficiary for boss pool
 var force = false
+var cheat_index = -1
 func apply() -> void:
-	if not MOD_EFFECTS.is_empty():
-		var mod_effect: StatusEffect
-		if Util.final_boss:
-			var available_effects = []
-			for idx in PENTHOUSE_FOREMAN_INDEXES:
-				available_effects.append(MOD_EFFECTS[idx])
-			mod_effect = RandomService.array_pick_random('mod_cog_effects', available_effects).duplicate()
-		else:
-			mod_effect = RandomService.array_pick_random('mod_cog_effects', MOD_EFFECTS).duplicate()
-			if force: mod_effect = force_cheats(mod_effect)
+		var mod_effect
+		if cheat_index == -1:
+			print("no cheat index naaau")
+			mod_effect = choose_random_cheat()
 		Globals.fore_cog_index += 1
 		if Util.survive_the_foreman:
 			if mod_effect.get_status_name() == "Green Lighter":
 				mod_effect = MOD_EFFECTS[2].duplicate() #proxy+ since 2 seperate green light stuff fail
 		mod_effect.target = target
-		var forecharge = overchaged.duplicate()
+		var forecharge = overcharged.duplicate()
 		forecharge.target = target
 		manager.add_status_effect(forecharge)
 		manager.add_status_effect(mod_effect)
 		
-func force_cheats(mod_effect) -> StatusEffect:
+func force_cheats() -> int:
+			var index
 			if Globals.fore_cog_index == 0:
-				mod_effect = MOD_EFFECTS[11].duplicate()
+				index = 10
 			elif Globals.fore_cog_index == 1:
-				mod_effect = MOD_EFFECTS[12].duplicate() #11
+				index = 10 #11
 			elif Globals.fore_cog_index == 2:
-				mod_effect = MOD_EFFECTS[10] #6
+				index = 10 #6
 			else:
-				mod_effect = MOD_EFFECTS[12].duplicate()
-			return mod_effect
+				index = 12
+			return index
+func choose_random_cheat() -> StatusEffect:
+	var mod_effect : StatusEffect
+	if Util.final_boss:
+		var available_effects = []
+		for idx in PENTHOUSE_FOREMAN_INDEXES:
+			available_effects.append(MOD_EFFECTS[idx])
+		mod_effect = available_effects[RandomService.randi_range_channel('mod_cog_effects', 0, available_effects.size() - 1)]
+	else:
+		mod_effect = MOD_EFFECTS[RandomService.randi_range_channel('mod_cog_effects', 0, MOD_EFFECTS.size() - 1)]
+		if force: mod_effect =  MOD_EFFECTS[force_cheats()]
+	#index = RandomService.randi_range_channel('mod_cog_effects', 0, MOD_EFFECTS.size() - 1)
+	print("does util even util")
+	print(Util.floor_number, Util.survive_the_foreman)
+	if Util.survive_the_foreman:
+		if mod_effect.get_status_name() == "Green Lighter":
+			mod_effect = MOD_EFFECTS[2]
+	return mod_effect
+
 	

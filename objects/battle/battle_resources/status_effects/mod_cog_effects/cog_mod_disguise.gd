@@ -4,7 +4,6 @@ extends StatusEffect
 var disguise = true
 func apply() -> void:
 	var cog: Cog = target
-	print("applying disguise")
 	target.body.set_color(Color(0.5, 0.5, 0.9))
 	manager.s_action_started.connect(on_action_start)
 

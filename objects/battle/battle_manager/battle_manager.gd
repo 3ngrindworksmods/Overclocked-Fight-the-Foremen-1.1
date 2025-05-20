@@ -756,13 +756,14 @@ func force_unlure(target: Cog) -> void:
 			#expire_status_effect(e)
 			lure_effect = effect
 			lure_effect.rounds = 0
+			lure_effect.target = null
 	if not lure_effect:
 		return
 	if target.stats.hp > 0 and lure_effect.lure_type == StatusLured.LureType.STUN and not target in has_moved:
 		unskip_turn(target)
 	if lure_effect:
 		if lure_effect.lure_type == lure_effect.LureType.DAMAGE_DOWN:
-			battle_stats[lure_effect.target].damage *= (1 / lure_effect.damage_nerf)
+			battle_stats[target].damage *= (1 / lure_effect.damage_nerf)
 			lure_effect.target = null
 			
 		
@@ -958,7 +959,7 @@ func create_v1_5_skele_cog(cog: Cog) -> Cog:
 	new_cog.level = cog.level - ceil(cog.level * 0.2)
 	new_cog.virtual_cog = true
 	#cog.dna.is_v2 = false
-	#new_cog.foreman = true
+	new_cog.foreman = true
 	new_cog.dna = Globals.foreman_dna
 	battle_node.add_child(new_cog)
 	new_cog.global_transform = cog.global_transform
@@ -967,6 +968,7 @@ func create_v1_5_skele_cog(cog: Cog) -> Cog:
 	new_cog.hide()
 	new_cog.v1_5 = true
 	new_cog.v2 = false
+	new_cog.foreman = false
 	add_cog(new_cog)
 	Task.delay(6.0).connect(new_cog.show)
 	return new_cog

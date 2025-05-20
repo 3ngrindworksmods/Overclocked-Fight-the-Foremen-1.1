@@ -59,14 +59,13 @@ func _ready() -> void:
 	if room_count % 2 == 0:
 		room_count += 1
 	Util.floor_number += 1
-	generate_floor()
-	if SaveFileService.run_file:
-		SaveFileService.run_file.floor_choice = null
-	print(floor_variant.floor_name)
 	if floor_variant.floor_name == "Survive The Foremen":
 		Util.survive_the_foreman = true
 	else:
 		Util.survive_the_foreman = false
+	generate_floor()
+	if SaveFileService.run_file:
+		SaveFileService.run_file.floor_choice = null
 
 func generate_floor() -> void:
 	if debug_floor_variant:

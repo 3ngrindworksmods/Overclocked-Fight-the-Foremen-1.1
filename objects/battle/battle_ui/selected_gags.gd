@@ -111,7 +111,7 @@ func hover_slot(idx: int) -> void:
 			#return
 		if paneleffects[idx] > 1:
 			atk_string += "Gag damage on this turn is boosted by " + str(paneleffects[idx] * 100) + "%"
-		elif paneleffects[idx] < 1: atk_string += "Gag damage on this turn is reduced by " + str(paneleffects[idx] * 100) + "%"
+		elif paneleffects[idx] < 1: atk_string += "Gag damage on this turn is reduced to " + str(paneleffects[idx] * 100) + "%"
 	if  not ((not current_gags) or current_gags.size() - 1 < idx):
 		var gag: ToonAttack = current_gags[idx]
 		var has_main_target: bool = gag.main_target != null

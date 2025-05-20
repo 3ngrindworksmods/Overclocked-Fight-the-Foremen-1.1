@@ -182,7 +182,7 @@ func roll_for_level() -> void:
 		elif dna: 
 			custom_level_range = Vector2i(dna.level_low, dna.level_high)
 		level = RandomService.randi_range_channel('cog_levels', custom_level_range.x, custom_level_range.y)
-		print("level rebalance: ",level_rebalance)
+		#print("level rebalance: ",level_rebalance)
 		level += level_rebalance
 	#if level <= 9: level = level + 3 I added this crap, removing it
 	# Allow for Cogs to be higher level than the floor intends
@@ -273,6 +273,10 @@ func set_up_stats() -> void:
 	if v2: new_text += " v2.0"
 	if dna.is_mod_cog: new_text += '\nProxy'
 	if dna.is_admin: new_text += '\nAdministrator'
+	#if foreman:
+		#new_text += '\n' + dna.status_effects[0].get_status_name()
+		
+		
 	#this runs afer initial dna but it can cause funny flunky / v1.5 foremen
 	dna.scale *= randf_range(1, 1.6)
 
@@ -300,7 +304,7 @@ func construct_cog():
 	# Allow Cog DNA to be refreshed and reset
 	if body:
 		body.queue_free()
-	
+	#print("IN construct cog god.gs linke 303")
 	# Some Cog shaders want to change aspects of a Cog's DNA before building
 	if dna.head_shader:
 		dna.head_shader = dna.head_shader.duplicate()
@@ -330,6 +334,11 @@ func construct_cog():
 		dna.head_shader.randomize_shader()
 	#dna.scale *= randf_range(1, 1.6)
 	# Set the body's dna
+	if foreman:
+		var overcharged : StatusEffect = dna.status_effects[0].overcharged
+		dna.status_effects.append(overcharged) 
+		dna.status_effects[0] = dna.status_effects[0].choose_random_cheat()
+		
 	body.set_dna(dna)
 	
 	skeleton = body.skeleton
@@ -350,7 +359,6 @@ func construct_cog():
 	head_node.scale *= 1.4
 	#test_head = body.head_cone
 	#dna.head = body.head_node
-
 	dna_set = true
 	s_dna_set.emit()
 
