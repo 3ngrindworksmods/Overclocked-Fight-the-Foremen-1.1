@@ -70,10 +70,8 @@ func choose_random_cheat() -> StatusEffect:
 		if Globals.last_fore_ability == status_name:
 			if status_name != MOD_EFFECTS[8].get_status_name(): # not larynx
 				mod_effect = MOD_EFFECTS[8]
-				print("rerolled fore ability into larynx")
 			else:
 				mod_effect = MOD_EFFECTS[2] # proxy+
-				print("rerolled fore ability into annoying")
 		Globals.last_fore_ability = mod_effect.get_status_name()
 	else:
 		mod_effect = MOD_EFFECTS[RandomService.randi_range_channel('mod_cog_effects', 0, MOD_EFFECTS.size() - 1)]

@@ -13,14 +13,14 @@ func apply() -> void:
 
 func on_status_added(status : StatusEffect) -> void:
 	if status.target == target and status.quality == 1:
-		manager.battle_stats[target].set('defense',manager.battle_stats[target].get('defense') * 1.20)
+		manager.battle_stats[target].set('defense',manager.battle_stats[target].get('defense') * 1.25)
 		defgain = ((manager.battle_stats[target].get('defense') - base_defense) / base_defense) * 100
 		var hp_healed = 0
 		if target.stats.hp > 0:
 			hp_healed = target.stats.max_hp * 0.07
 			#target.stats.hp += hp_healed
 		await manager.sleep(1)
-		manager.battle_text(target, "+ 20% defense")
+		manager.battle_text(target, "+ 25% defense")
 		if(hp_healed > 0 and 2 > 4): #making it guaranted false for now but edit this functionality later
 			await manager.sleep(0.12)
 			manager.battle_text(target,"+ " + str(hp_healed),Color(0, 1, 0, 1), Color(0, 1, 0, 1))
