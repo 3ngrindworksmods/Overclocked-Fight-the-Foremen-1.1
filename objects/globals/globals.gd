@@ -553,6 +553,7 @@ func on_floor_start(game_floor: GameFloor) -> void:
 
 const MaxToonupConsumables := 3
 var fore_cog_index = 0
+var last_fore_ability = "ods back in action update"
 
 #region Global Signals
 signal s_game_paused(pause_menu)

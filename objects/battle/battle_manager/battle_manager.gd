@@ -186,6 +186,7 @@ func someone_died(who: Node3D) -> void:
 			return
 	
 	# Remove from cog array if is cog
+	
 	if who is Cog and who in cogs:
 		if who.v2:
 			create_v2_cog(who)
@@ -209,8 +210,6 @@ func someone_died(who: Node3D) -> void:
 	
 	#await Task.delay(15)
 
-
-
 	
 	var check_arrays := [round_actions, round_end_actions]
 	
@@ -225,7 +224,6 @@ func someone_died(who: Node3D) -> void:
 				action.targets.remove_at(action.targets.find(who))
 			if action.targets.is_empty():
 				arr.remove_at(i)
-
 	# Scrub status effects for the Someone in question
 	for status: StatusEffect in get_statuses_for_target(who):
 		if status.on_death:
@@ -663,7 +661,11 @@ func add_status_effect(status_effect: StatusEffect) -> void:
 		return
 	status_effect.manager = self
 	status_effects.append(status_effect)
-	status_effect.apply()
+	if status_effect is GagJob:  
+		await status_effect.apply()
+		print("gag job")
+	else: status_effect.apply()
+		
 	s_status_effect_added.emit(status_effect)
 
 func attempt_to_combine(effect: StatusEffect, repeat_effects: Array[StatusEffect]) -> bool:
@@ -768,6 +770,8 @@ func force_unlure(target: Cog) -> void:
 			
 		
 func unskip_turn(who: Actor) -> void:
+	if who in has_moved:
+		return
 	if who is Cog:
 		var cog_index := cogs.find(who)
 		if bellow:
@@ -1042,3 +1046,15 @@ func extra_chest():
 				chest3.item_pool = battle_node.item_pool
 			chest3.override_replacement_rolls = RandomService.randi_channel('true_random') % 2 == 0
 	
+func append_has_moved(cog: Cog) -> void:
+	has_moved.append(cog)
+
+func remove_debuffs(target) -> void:
+		for status_effect: StatusEffect in status_effects:
+			if status_effect.target == target and status_effect.quality == 1:
+				#print(status_effect.get_description())
+				await expire_status_effect(status_effect)
+
+func print_round_actions() -> void:
+	for action in round_actions:
+		print(action.action_name)

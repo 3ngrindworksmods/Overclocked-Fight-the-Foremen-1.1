@@ -210,6 +210,7 @@ func both_bosses_alive() -> bool:
 func should_spawn_foreman() -> bool:
 	#print("in penthouse, line 189 curr round: ", BattleService.ongoing_battle.current_round)
 	#always on round 2
+	print("elevator cooldown: ", elevator_cooldown, " turn: ", BattleService.ongoing_battle.current_round)
 	if BattleService.ongoing_battle.current_round == 1:
 		return true
 	#never when no bosses

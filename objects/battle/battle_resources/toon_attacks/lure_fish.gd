@@ -10,7 +10,6 @@ func action():
 	if target.lured:
 		return
 	user.face_position(target.global_position)
-	
 	var rod = load("res://models/props/gags/fishing_rod/fishing_rod.tscn").instantiate()
 	var dollar = load("res://models/props/gags/fishing_rod/dollar_bill.tscn").instantiate()
 	if override_mat:

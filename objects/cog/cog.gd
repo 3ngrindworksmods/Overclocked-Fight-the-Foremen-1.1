@@ -35,10 +35,10 @@ enum CogState {
 @export var dna: CogDNA
 var dna_set := false
 var attacks : Array[CogAttack]
-@export var skelecog := false # CHANGE TO TRUE AFTER DEMO
+@export var skelecog := false 
 @export var skelecog_chance := 10
 @export var fusion := false
-@export var foreman := false #change to TRUE
+@export var foreman := false
 @export var fusion_chance := 0
 @export var virtual_cog := false
 @export var techbot := false 
@@ -51,6 +51,7 @@ var attacks : Array[CogAttack]
 @export var ts_pmo = false #rebalancing these goddamn special room cogs
 var use_mod_cogs_pool := false
 var has_forced_dna := false
+#var arrow_indicator: Sprite3D
 
 # Movement Speed
 var walk_speed := 4.0 #was 4.0
@@ -632,6 +633,7 @@ func speak(phrase: String, want_sfx := true):
 	await bubble.finished
 	body.nametag.show()
 
+
 func fly_in(y_from := 20.0, y_to := 0.0) -> void:
 	# Ready the propeller
 	var propeller := PROP_PROPELLER.instantiate()
@@ -691,6 +693,61 @@ func explode() -> void:
 	explosion.hide()
 	queue_free()
 
+
+
+"""
+# Add these functions to handle showing/hiding the arrow
+func show_arrow_above_cog(color := Color.MEDIUM_PURPLE) -> void:
+	if arrow_indicator and is_instance_valid(arrow_indicator):
+		arrow_indicator.show()
+		return
+	
+	# Create new arrow if one doesn't exist
+	var arrow_texture = load("res://ui_assets/misc/white_arrow.png")
+	arrow_indicator = Sprite3D.new()
+	arrow_indicator.texture = arrow_texture
+	arrow_indicator.modulate = color
+	arrow_indicator.pixel_size = 0.062
+	arrow_indicator.billboard = BaseMaterial3D.BILLBOARD_ENABLED
+
+	if is_instance_valid(body) and is_instance_valid(body.head_node):
+		body.head_node.add_child(arrow_indicator)
+		arrow_indicator.position = Vector3(0, 4.0, 0)  # Adjust height as needed
+		arrow_indicator.show()
+		_start_bounce_animation()
+	else:
+		push_warning("Couldn't show arrow - nametag node not ready")
+
+func hide_arrow_above_cog() -> void:
+	if arrow_indicator and is_instance_valid(arrow_indicator):
+		arrow_indicator.hide()
+		_stop_bounce_animation()
+
+		
+var _bounce_amplitude := 0.25
+var _bounce_speed := 0.3
+var _base_y_position := 4.0
+var _bounce_tween: Tween = null
+
+func _start_bounce_animation() -> void:
+	if _bounce_tween and _bounce_tween.is_running():
+		return
+	
+	_bounce_tween = create_tween().set_loops()
+	_bounce_tween.tween_method(_animate_bounce, 0.0, TAU, 1.0/_bounce_speed)
+
+func _stop_bounce_animation() -> void:
+	if _bounce_tween:
+		_bounce_tween.kill()
+		_bounce_tween = null
+	if arrow_indicator and is_instance_valid(arrow_indicator):
+		arrow_indicator.position.y = _base_y_position
+
+func _animate_bounce(angle: float) -> void:
+	if arrow_indicator and is_instance_valid(arrow_indicator):
+		var offset = sin(angle) * _bounce_amplitude
+		arrow_indicator.position.y = _base_y_position + offset
+"""
 ## Global functions
 static func get_department_emblem(dept: CogDNA.CogDept) -> Texture2D:
 	return load("res://models/cogs/misc/hp_light/" + Cog.get_department_name(dept) + ".png")
