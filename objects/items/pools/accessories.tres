@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=70 format=3 uid="uid://dwajf7qf15eas"]
+[gd_resource type="Resource" script_class="ItemPool" load_steps=71 format=3 uid="uid://dwajf7qf15eas"]
 
 [ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="1_vktaj"]
 [ext_resource type="Resource" uid="uid://ba7mgoe7i5oq4" path="res://objects/items/resources/accessories/backpacks/gag_pack.tres" id="2_xbc78"]

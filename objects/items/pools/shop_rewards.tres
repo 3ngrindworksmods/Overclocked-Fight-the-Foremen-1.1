@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=65 format=3 uid="uid://br3mtjoo6t1xc"]
+[gd_resource type="Resource" script_class="ItemPool" load_steps=67 format=3 uid="uid://br3mtjoo6t1xc"]
 
 [ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="1_7i42i"]
 [ext_resource type="Resource" uid="uid://ba7mgoe7i5oq4" path="res://objects/items/resources/accessories/backpacks/gag_pack.tres" id="2_ffu8s"]
@@ -64,6 +64,8 @@
 [ext_resource type="Resource" uid="uid://xi4ggdxlwnu" path="res://objects/items/resources/accessories/glasses/scuba_mask.tres" id="61_6uakv"]
 [ext_resource type="Resource" uid="uid://cmlaxrdbmxvfu" path="res://objects/items/resources/active/toy_hammer.tres" id="62_1bcob"]
 [ext_resource type="Resource" uid="uid://dwhn5hfueyg4w" path="res://objects/items/resources/accessories/hats/cowboy_hat.tres" id="63_utp72"]
+[ext_resource type="Resource" uid="uid://b84tkx6l2id8o" path="res://objects/items/resources/active/accessory_trunk.tres" id="64_fnubi"]
+[ext_resource type="Resource" uid="uid://bwd41eet0c62p" path="res://objects/items/resources/accessories/hats/straw_hat.tres" id="65_pcnjc"]
 
 [resource]
 script = ExtResource("18_ubwkd")

@@ -313,7 +313,7 @@ func make_boss_chests(holder_node: Node3D, pos_node: Node3D) -> void:
 	else: num = 4
 	for i in range(num):
 		var chest: TreasureChest = chest_scene.instantiate()
-		chest.item_pool = Globals.PROGRESSIVE_ITEM_POOL
+		chest.item_pool = ItemService.PROGRESSIVE_POOL
 		holder_node.add_child(chest)
 		if not i == 4: 
 			chest.item_pool = load("res://objects/items/pools/progressives.tres")

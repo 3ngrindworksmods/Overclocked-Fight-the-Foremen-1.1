@@ -55,6 +55,9 @@
 [ext_resource type="Resource" uid="uid://bye8a25d8np3f" path="res://objects/items/resources/accessories/backpacks/angel_wings.tres" id="71_0rtpx"]
 [ext_resource type="Resource" uid="uid://cmlaxrdbmxvfu" path="res://objects/items/resources/active/toy_hammer.tres" id="71_6bo5q"]
 [ext_resource type="Resource" uid="uid://dcsxiitw5cbcq" path="res://objects/items/resources/passive/gag_voucher_pack.tres" id="74_3m1ul"]
+[ext_resource type="Resource" uid="uid://b84tkx6l2id8o" path="res://objects/items/resources/active/accessory_trunk.tres" id="75_o6jp8"]
+[ext_resource type="Resource" uid="uid://73kxqwkg6ovx" path="res://objects/items/resources/active/fire_hydrant.tres" id="76_8k8c5"]
+[ext_resource type="Resource" uid="uid://bwd41eet0c62p" path="res://objects/items/resources/accessories/hats/straw_hat.tres" id="77_8k8c5"]
 
 [resource]
 script = ExtResource("2_jgemf")

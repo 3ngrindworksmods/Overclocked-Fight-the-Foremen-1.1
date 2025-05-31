@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://dcsxiitw5cbcq" path="res://objects/items/resources/passive/gag_voucher_pack.tres" id="14_82jbt"]
 [ext_resource type="Resource" uid="uid://yufkd5v70f3d" path="res://objects/items/resources/passive/candies/candy_speed.tres" id="14_b0d2e"]
 [ext_resource type="Resource" uid="uid://c8yh80vqngv1b" path="res://objects/items/resources/passive/music_treasure.tres" id="15_bu400"]
+[ext_resource type="Resource" uid="uid://wsx4jasny47f" path="res://objects/items/resources/passive/candies/candy_battery.tres" id="16_82jbt"]
 
 [resource]
 script = ExtResource("7_dju7n")
