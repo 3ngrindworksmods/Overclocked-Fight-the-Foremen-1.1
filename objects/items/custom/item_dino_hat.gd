@@ -24,7 +24,6 @@ func on_action_started(action: BattleAction) -> void:
 			action.damage = action.damage * 0.50
 			action.store_boost_text("Multiscale!", Color(0.466, 0.663, 0.935))
 		if not_hit:
-			print("hello there")
 			action.damage = action.damage * 0.8
 			action.store_boost_text("Multiscale!", Color(0.466, 0.663, 0.935))
 		last_player_hp = Util.get_player().stats.hp

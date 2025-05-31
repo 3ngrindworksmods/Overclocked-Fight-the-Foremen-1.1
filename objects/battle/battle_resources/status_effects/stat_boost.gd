@@ -31,6 +31,8 @@ func get_icon() -> Texture2D:
 	return ICONS[stat]
 
 func get_status_name() -> String:
+	if status_name != "Status Effect":
+		return status_name
 	return stat[0].to_upper() + stat.substr(1) + (" Up" if boost > 1.0 else " Down")
 
 func combine(effect: StatusEffect) -> bool:
