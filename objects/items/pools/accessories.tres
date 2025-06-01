@@ -69,7 +69,7 @@
 [ext_resource type="Resource" uid="uid://xi4ggdxlwnu" path="res://objects/items/resources/accessories/glasses/scuba_mask.tres" id="66_un2c5"]
 [ext_resource type="Resource" uid="uid://oipg5ypoi2l4" path="res://objects/items/resources/accessories/glasses/alien_glasses.tres" id="67_rwk04"]
 [ext_resource type="Resource" uid="uid://b3p4ie24tfwmb" path="res://objects/items/resources/accessories/hats/cowboy_hat.tres" id="68_8hl13"]
-[ext_resource type="Resource" uid="uid://ctrlcwi2mdau2" path="res://objects/items/resources/accessories/hats/pilot_hat.tres" id="31_3nl6l"]
+[ext_resource type="Resource" uid="uid://dwhn5hfueyg4w" path="res://objects/items/resources/accessories/hats/pilot_hat.tres" id="31_3nl6l"]
 [ext_resource type="Resource" uid="uid://mjt03er8fskn" path="res://objects/items/resources/accessories/hats/dino_hat.tres" id="32_3nl6l"]
 [ext_resource type="Resource" uid="uid://bw4hfnjy11e63" path="res://objects/items/resources/accessories/backpacks/plane_wings.tres" id="33_3nl6l"]
 

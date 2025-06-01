@@ -40,8 +40,8 @@ const LEVEL_RANGES: Dictionary[int, Array] = {
 	1: [4, 5],
 	2: [6, 7],
 	3: [8, 9],
-	4: [10, 11],
-	5: [12, 14],
+	4: [10, 12],
+	5: [12, 15],
 }
 
 ## Floor difficulty from 0-5

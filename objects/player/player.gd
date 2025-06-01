@@ -135,7 +135,10 @@ func _init() -> void:
 func _ready() -> void:
 	# Make player globally accessible
 	Util.player = self
-	
+	if Util.oftfdebug:
+		run_speed *= 3
+		var immune_to_light_damage := true
+		var immune_to_crush_damage := true
 	# Construct the toon from the character DNA
 	toon.construct_toon(character.dna)
 	print('toon constructed')

@@ -47,7 +47,10 @@ func action():
 	manager.s_focus_char.emit(target)
 	if hit:
 		target.set_animation('conked')
-		manager.affect_target(target, damage, true)
+		if user.foreman:
+			manager.affect_target(target, target.stats.max_hp * -0.833, true)
+		else:
+			manager.affect_target(target, damage)
 	else:
 		target.set_animation('sidestep_left')
 		manager.battle_text(target,"MISSED")

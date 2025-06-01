@@ -43,6 +43,7 @@ var have_combo_damage = false
 var bellow = false
 var start_cog_size = 0
 var multiple_fore_deaths = false
+var cogs_destroyed_this_turn = 0
 
 ## Signals
 signal s_focus_char(character: Node3D)
@@ -201,6 +202,7 @@ func someone_died(who: Node3D) -> void:
 		cog.special_attack = true
 		var attack := get_cog_attack(cog)
 		cog.special_attack = false
+		
 		if not attack == null:
 			attack.ActionTarget.SELF
 			if round_actions.size() > 0: inject_battle_action(attack, 0)
@@ -344,6 +346,7 @@ func is_target_dead(target: Node3D) -> bool:
 # If you need to check for multiple potentially dead targets
 func check_pulses(targets):
 	var dead_guys := []
+	#print("line 350 bm instance of check targets")
 	for target in targets:
 		if is_target_dead(target):
 			dead_guys.append(target)
@@ -1039,7 +1042,7 @@ func extra_chest():
 			chest3.global_rotation = battle_node.global_rotation
 			player.boost_queue.queue_text("4 Cog Bounty!", Color.GREEN)
 			if player.better_battle_rewards == true and current_round <= 2:
-				chest3.item_pool = load(ITEM_POOL_PROGRESSIVES)
+				chest3.item_pool = ItemService.PROGRESSIVE_POOL
 				player.boost_queue.queue_text("Bounty!", Color.GREEN)
 			else:
 				chest3.item_pool = battle_node.item_pool
