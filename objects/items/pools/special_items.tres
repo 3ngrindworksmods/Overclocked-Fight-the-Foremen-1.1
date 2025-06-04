@@ -33,6 +33,6 @@
 
 [resource]
 script = ExtResource("18_5jvy5")
-items = Array[ExtResource("1_oxrd8")]([ExtResource("2_n4ktm"), ExtResource("3_e731w"), ExtResource("4_eqgxa"), ExtResource("5_wersp"), ExtResource("6_w52d4"), ExtResource("7_x61t0"), ExtResource("8_vk3ji"), ExtResource("9_athb6"), ExtResource("12_ebao6"), ExtResource("14_a5mu0"), ExtResource("20_eqgxa"), ExtResource("22_x61t0"), ExtResource("23_x61t0"), ExtResource("24_vk3ji"), ExtResource("25_athb6"), ExtResource("27_3s3yo"), ExtResource("28_ebao6"), ExtResource("29_yjdyf"), ExtResource("30_a5mu0"), ExtResource("31_66m13"), ExtResource("32_cgk14"), ExtResource("35_lviim"), ExtResource("37_a272n"), ExtResource("39_v6ptv"), ExtResource("52_3nl6l"), ExtResource("33_4fcd8")])
+items = Array[ExtResource("1_oxrd8")]([ExtResource("2_n4ktm"), ExtResource("3_e731w"), ExtResource("4_eqgxa"), ExtResource("5_wersp"), ExtResource("6_w52d4"), ExtResource("7_x61t0"), ExtResource("8_vk3ji"), ExtResource("9_athb6"), ExtResource("12_ebao6"), ExtResource("14_a5mu0"), ExtResource("20_eqgxa"), ExtResource("22_x61t0"), ExtResource("23_x61t0"), ExtResource("24_vk3ji"), ExtResource("25_athb6"), ExtResource("27_3s3yo"), ExtResource("28_ebao6"), ExtResource("29_yjdyf"), ExtResource("30_a5mu0"), ExtResource("31_66m13"), ExtResource("32_cgk14"), ExtResource("35_lviim"), ExtResource("37_a272n"), ExtResource("39_v6ptv"), ExtResource("52_3nl6l")])
 low_roll_override = 7
 metadata/_custom_type_script = "uid://wiibpvvki8vs"

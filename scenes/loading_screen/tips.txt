@@ -20,15 +20,15 @@ Not every battle is required, but some give great rewards.
 Have you seen the Operation Dessert Storm BAT file?
 Stuck? In the settings, the "I'm stuck!" button will help you out! 
 Squirt can make Cogs more vulnerable to damage.
-Trap deals the most damage, but requires a setup turn.
 Single lures stun the Cog, group lures lower the damage of up to 3.
 Drop has the highest combo damage multiplier.
 Attacking a cog multiple times with the same gag track will result in combo damage.
-Sound hits 3 Cogs, with the pink arrows indicating which take splash damage.
+Want more characters and pocket pranks? Check out the Green Folio mod.
 Throw's self heal is the best way to maintain your laff!
 The Scapegoat's name is Kilo Kidd.
 Drop's aftershock is affected by crits.
 Nah, no tip for you.
+Final damage dealt is divided by the target's defense stat.
 Hitting a Cog with multiple drop gags can stack aftershock!
 Chest types indicate the type of items they spawn.
 Rare rooms contain special chests!
