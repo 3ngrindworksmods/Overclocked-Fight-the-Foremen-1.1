@@ -44,6 +44,7 @@ var bellow = false
 var start_cog_size = 0
 var multiple_fore_deaths = false
 var cogs_destroyed_this_turn = 0
+var testval = 0
 
 ## Signals
 signal s_focus_char(character: Node3D)
@@ -185,13 +186,14 @@ func someone_died(who: Node3D) -> void:
 			return
 	
 	# Remove from cog array if is cog
-	
+	#testval
 	if who is Cog and who in cogs:
 		if who.v2:
 			create_v2_cog(who)
 		cogs.remove_at(cogs.find(who))
-	for i in range(cogs.size() - 1, -1, -1):
-		var cog = cogs[i]
+	var reversed_cogs = cogs.duplicate()
+	reversed_cogs.reverse()
+	for cog in reversed_cogs:
 		if not cog.foreman or cog.stats.hp < 1:
 			continue
 		if multiple_fore_deaths:
@@ -202,7 +204,6 @@ func someone_died(who: Node3D) -> void:
 		cog.special_attack = true
 		var attack := get_cog_attack(cog)
 		cog.special_attack = false
-		
 		if not attack == null:
 			attack.ActionTarget.SELF
 			if round_actions.size() > 0: inject_battle_action(attack, 0)
@@ -363,10 +364,10 @@ func check_pulses(targets):
 	for i in dead_guys.size():
 		await someone_died(dead_guys[i])
 		if i < dead_guys.size()-1:
-			kill_someone(dead_guys[i])
+			kill_someone(dead_guys[i]) 
 		else:
 			await kill_someone(dead_guys[i])
-	multiple_fore_deaths = false # setting it back to false after foreman checks
+	multiple_fore_deaths = false # setting it back to false after foreman check lol i don't even think this runs
 
 func sleep(seconds: float):
 	await get_tree().create_timer(seconds).timeout

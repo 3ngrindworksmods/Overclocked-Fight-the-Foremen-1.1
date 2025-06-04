@@ -33,10 +33,10 @@ func _ready():
 	camera.current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
-	if SaveFileService.run_file and SaveFileService.run_file.floor_choice:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		start_game_floor(SaveFileService.run_file.floor_choice)
-		return
+	#if SaveFileService.run_file and SaveFileService.run_file.floor_choice:
+		#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		#start_game_floor(SaveFileService.run_file.floor_choice)
+		#return
 	
 	# Close the elevator doors
 	elevator.animator.play('open')
@@ -54,8 +54,8 @@ func _ready():
 	get_next_floors()
 
 func start_floor(floor_var: FloorVariant):
-	SaveFileService.run_file.floor_choice = floor_var
-	SaveFileService.save()
+	#SaveFileService.run_file.floor_choice = floor_var
+	#SaveFileService.save()
 	elevator.animator.play('open')
 	player.turn_to_position($Outside.global_position, 1.5)
 	$ElevatorUI.hide()
@@ -78,6 +78,7 @@ func get_next_floors() -> void:
 	if Util.floor_number == 5:
 		final_boss_time_baby()
 		return
+	var random_floor_amount = 4
 	var floor_variants := DirAccess.get_files_at(FLOOR_VARIANT_PATH)
 	if Util.floor_number >= 3:
 		floor_variants = [floor_variants[floor_variants.size() - 1]] #3 but it looks better than just 3
@@ -85,7 +86,8 @@ func get_next_floors() -> void:
 	if Util.floor_number >= 3:
 		add_normal_floor(floor_variants)
 		add_positive_floor(floor_variants)
-	for i in 4:
+		random_floor_amount = 2
+	for i in random_floor_amount:
 		var random_floor := floor_variants[RandomService.randi_channel('floors') % floor_variants.size()] 
 		#floor_variants.remove_at(floor_variants.find(random_floor))
 		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
@@ -116,13 +118,15 @@ func add_more_floors(floor_variants) -> void:
 		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
 		var anom_array = new_floor.get_green_light_anomaly()
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = " Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
 		add_reorg_floor(floor_variants)
 		add_mixed_bag_floor(floor_variants)
 		add_gag_immune_floor(floor_variants)
+		add_larynx_floor(floor_variants)
+		add_annoying_floor(floor_variants)
 		add_chaos_floor(floor_variants)
 
 
@@ -168,6 +172,24 @@ func add_mixed_bag_floor(floor_variants) -> void:
 		var random_floor = floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
 		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
 		var anom_array = new_floor.get_mixed_bag_anomaly()
+		new_floor.scripted_details(anom_array)
+		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		while not new_floor.reward:
+			new_floor.randomize_item()
+		next_floors.append(new_floor)
+func add_larynx_floor(floor_variants) -> void:
+		var random_floor = floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
+		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
+		var anom_array = new_floor.get_larynx_anomaly()
+		new_floor.scripted_details(anom_array)
+		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The 🗣"
+		while not new_floor.reward:
+			new_floor.randomize_item()
+		next_floors.append(new_floor)
+func add_annoying_floor(floor_variants) -> void:
+		var random_floor = floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
+		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
+		var anom_array = new_floor.get_annoying_anomaly()
 		new_floor.scripted_details(anom_array)
 		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
 		while not new_floor.reward:

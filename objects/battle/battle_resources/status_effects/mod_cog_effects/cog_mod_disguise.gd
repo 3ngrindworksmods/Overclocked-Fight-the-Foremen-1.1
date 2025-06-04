@@ -10,18 +10,30 @@ func apply() -> void:
 func on_action_start(action : BattleAction) -> void:
 	# target.body.set_color(Color(0.867, 0.627, 0.867))
 	if action is ToonAttack and disguise:
-		if action.damage > 1:
+		if action is GagLure:
+			assess_lure_targets(action.targets)
+		elif action is not GagTrap:  
 			if target in action.targets:
-				action.damage = -1
+				action.damage = 0
+				action.sheer_force = true
 				disguise = false
-				description = "Foreman's shield has been broken and is vulnerable to attacks!"
-		
-				await manager.sleep(5.0)
+				description = "Foreman's shield has been broken and is vulnerable to attacks!"		
+				await manager.sleep(4.5)
 				target.body.set_color(Color(0.867, 0.627, 0.867))
 
 
 func cleanup() -> void:
 	manager.s_action_started.disconnect(on_action_start)
+
+func assess_lure_targets(targets: Array) -> void:
+	for cog: Cog in targets:
+		if is_instance_valid(cog.trap):
+			print("in assessment lure")
+			cog.trap.damage = 0
+			description = "Foreman's shield has been broken and is vulnerable to attacks!"
+			disguise = false
+			target.body.set_color(Color(0.867, 0.627, 0.867))
+
 
 func get_status_name() -> String:
 	if disguise: return "Shield"

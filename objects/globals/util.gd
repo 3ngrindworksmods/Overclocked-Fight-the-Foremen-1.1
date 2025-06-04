@@ -43,7 +43,9 @@ var battlesonfloor = 0
 var final_boss = false  # NOT BEST PRACTICES BUT IM RELEASING THIS TODAY, ON THIS DAY, TODAY
 var battles_encountered = 0
 var survive_the_foreman = false
-var oftfdebug = true
+var oftfdebug = false
+var monolitic = false
+var force_foreman = null
 var floor_number := -1:
 	set(x):
 		floor_number = x

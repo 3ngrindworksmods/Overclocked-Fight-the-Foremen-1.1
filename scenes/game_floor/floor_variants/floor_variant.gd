@@ -251,6 +251,24 @@ func get_mixed_bag_anomaly() -> Array[Script]:
 	var loaded_mod: Script = Util.universal_load(new_mod)
 	mods.append(loaded_mod)
 	return mods
+func get_larynx_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_larynx.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	mods.append(loaded_mod)
+	var gag_immunity_mods := get_gag_immunity_anomaly()
+	if gag_immunity_mods.size() > 0:
+		mods.append(gag_immunity_mods[0])
+	return mods
+func get_annoying_anomaly() -> Array[Script]:
+	var mods: Array[Script] = []
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/anomalies/floor_mod_annoying.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	mods.append(loaded_mod)
+	var gag_immunity_mods := get_gag_immunity_anomaly()
+	if gag_immunity_mods.size() > 0:
+		mods.append(gag_immunity_mods[0])	
+	return mods
 func get_no_anomaly() -> Array[Script]:
 	var mods: Array[Script] = []
 	return mods

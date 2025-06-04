@@ -12,6 +12,11 @@ var cog: Cog
 
 func apply() -> void:
 	cog = target
+	if Util.final_boss:
+		var proxy_attack: = Add_Proxy_Attack.duplicate()
+		proxy_attack.user = cog
+		proxy_attack.targets = [cog]
+		manager.append_action(proxy_attack)
 	#var proxy_attack: = Add_Proxy_Attack.duplicate()
 	#print(proxy_attack)
 	#proxy_attack.user = cog

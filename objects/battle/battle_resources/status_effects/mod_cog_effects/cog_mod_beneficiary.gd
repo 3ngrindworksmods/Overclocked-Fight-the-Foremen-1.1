@@ -15,6 +15,7 @@ func on_toon_heal(health : int) -> void:
 	if(health > last_player_hp):
 		var hp_ratio = float(health - last_player_hp) / player.stats.max_hp
 		if target.stats.hp > 0:
+			if Util.final_boss: boss_rebalance()
 			target.stats.hp = target.stats.hp + (max(target.stats.max_hp, target.stats.hp) * (hp_ratio * heal_multiplier))
 	else:
 		print("got damaged oof: ", health - last_player_hp)
@@ -29,3 +30,7 @@ func get_status_name() -> String:
 
 func get_icon() -> Texture2D:
 	return load("res://ui_assets/battle/statuses/green_plus.png")
+
+func boss_rebalance() -> void:
+	if target.stats.max_hp * 2.4 < target.stats.hp:
+		target.stats.max_hp = ceili(target.stats.max_hp * 1.33)

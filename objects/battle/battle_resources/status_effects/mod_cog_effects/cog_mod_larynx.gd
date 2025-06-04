@@ -4,7 +4,12 @@ var Bellow_Reference = preload("res://objects/battle/battle_resources/cog_attack
 
 func apply() -> void:
 	var cog: Cog = target
-	
+	if Util.final_boss:
+		var bellow_attack: = Bellow_Reference.duplicate()
+		bellow_attack.user = target
+		bellow_attack.targets = [target]
+		manager.append_action(bellow_attack)
+		Task.delay(0.05)
 	cog.stats.damage *= 1
 	#var bellow_attack: = Bellow_Reference.duplicate()
 	#bellow_attack.user = cog

@@ -202,6 +202,8 @@ func roll_for_dna() -> void:
 				pool = Util.floor_manager.cog_pool
 			else:
 				pool = Globals.GRUNT_COG_POOL
+	if pool == null:
+		pool = Globals.GRUNT_COG_POOL
 	
 	# Make it more likely for quest related Cogs to appear
 	if (not dna) and RandomService.randi_channel('true_random') % 100 < QUEST_HELP_CHANCE and is_instance_valid(Util.get_player()):

@@ -4,17 +4,17 @@ extends StatusEffect
 
 const MOD_EFFECTS : Array[StatusEffect] = [ #res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_drop_immunity.tres
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_techbot.tres"), #0
-	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_disguise.tres"),
+	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_disguise.tres"), #1
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_proxy_add.tres"),
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_drop_immunity.tres"), #3
-	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_rebalance.tres"), 
+	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_rebalance.tres"), #4
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_lure_immunity.tres"), #5
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_troll.tres"),
-	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_damage_drift.tres"),
+	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_damage_drift.tres"), #7
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_larynx.tres"), #8
-	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_beneficiary.tres"),
+	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_beneficiary.tres"), #9
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_v15_foreman.tres"), #10
-	preload("res://objects/battle/battle_resources/misc_movies/traffic_manager/mod_cog_green_light.tres"),
+	preload("res://objects/battle/battle_resources/misc_movies/traffic_manager/mod_cog_green_light.tres"), #11
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_cursed_foreman.tres"),
 	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_sheer_force.tres"), #13
 	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_thorns.tres"), #14
@@ -24,6 +24,11 @@ const MOD_EFFECTS : Array[StatusEffect] = [ #res://objects/battle/battle_resourc
 	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_spongy.tres"), #18
 	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_ruins.tres"), #19
 	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_whistleblower_fan.tres"), #20
+	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_litigant.tres"), #21
+	#preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_cohesive.tres"), #22
+	
+	
+	
 	
 
 
@@ -52,9 +57,9 @@ func apply() -> void:
 func force_cheats() -> int:
 			var index
 			if Globals.fore_cog_index == 0:
-				index = 20
+				index = 4
 			elif Globals.fore_cog_index == 1:
-				index = 20 #11
+				index = 4 #11
 			elif Globals.fore_cog_index == 2:
 				index = 7 #6
 			else:
@@ -69,7 +74,7 @@ func choose_random_cheat() -> StatusEffect:
 			available_effects.append(MOD_EFFECTS[idx])
 		mod_effect = available_effects[RandomService.randi_range_channel('mod_cog_effects', 0, available_effects.size() - 1)]
 		var status_name = mod_effect.get_status_name()
-		if Globals.last_fore_ability == status_name:
+		if Globals.last_fore_ability == status_name and not Util.monolitic:
 			if status_name != MOD_EFFECTS[8].get_status_name(): # not larynx
 				mod_effect = MOD_EFFECTS[8]
 			else:
@@ -78,6 +83,7 @@ func choose_random_cheat() -> StatusEffect:
 	else:
 		mod_effect = MOD_EFFECTS[RandomService.randi_range_channel('mod_cog_effects', 0, MOD_EFFECTS.size() - 1)]
 		if force: mod_effect =  MOD_EFFECTS[force_cheats()]
+		if Util.monolitic: mod_effect = MOD_EFFECTS[Util.force_foreman]
 	#index = RandomService.randi_range_channel('mod_cog_effects', 0, MOD_EFFECTS.size() - 1)
 	if Util.survive_the_foreman:
 		if mod_effect.get_status_name() == "Green Lighter":

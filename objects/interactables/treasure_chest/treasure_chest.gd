@@ -121,7 +121,7 @@ func assign_item(world_item: WorldItem):
 				world_item.item = load("res://objects/items/resources/accessories/hats/heart_headband.tres")
 				return
 			if Util.floor_number == 2:
-				world_item.item = load("res://objects/items/resources/accessories/hats/miner_hat.tres")
+				world_item.item = load("res://objects/items/resources/passive/blue_jellybean.tres")
 				return
 			if Util.floor_number == 3:
 				#world_item.item = load("res://objects/items/resources/accessories/hats/rainbow_wig.tres")
