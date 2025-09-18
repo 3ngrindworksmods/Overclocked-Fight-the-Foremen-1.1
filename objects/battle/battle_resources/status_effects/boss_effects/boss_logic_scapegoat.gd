@@ -10,6 +10,9 @@ const ATTENTIVE_RESOURCE := preload("res://objects/battle/battle_resources/statu
 const LURE_IMUN_RESOURCE := preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_lure_immunity.tres")
 var Shield_Up_Attack = preload("res://objects/battle/battle_resources/cog_attacks/resources/shields_up.tres")
 var PLACEHOLDER_ATTACK = preload("res://objects/battle/battle_resources/cog_attacks/resources/placeholder.tres")
+const PARTICLE := preload("res://objects/battle/effects/drenched/rage.tscn")
+
+var particles : GPUParticles3D
 
 var sheilds_up = true
 var enraged = false
@@ -119,18 +122,28 @@ func get_enraged() -> void:
 	var shield_attack: = Shield_Up_Attack.duplicate()
 	shield_attack.user = cog
 	shield_attack.targets = [cog]
-	manager.round_end_actions.append(shield_attack) 
+	shield_attack.attack_lines.clear()
+	shield_attack.attack_lines.append_array(["You got the goat, Toon!","You made me maaa-d!"])
+	manager.round_end_actions.append(shield_attack)
+	#particles = PARTICLE.instantiate()
+	#target.add_child(particles)
+	#particles.global_position = target.body.head_bone.global_position
+	#particles.reparent(target.body.head_bone)
 
 func sheild_up() -> void:
 	enraged = false
 	sheilds_up = true
 	rage = 0
 	rage_turns = 1
+	#if particles:
+	#	particles.queue_free()
 	
 	var cog = target
 	var shield_attack: = Shield_Up_Attack.duplicate()
 	shield_attack.user = cog
 	shield_attack.targets = [cog]
+	shield_attack.attack_lines.clear()
+	shield_attack.attack_lines.append_array(["I can take it!","My guard is up!"])
 	shield_attack.rage = false
 	manager.round_end_actions.append(shield_attack)
 

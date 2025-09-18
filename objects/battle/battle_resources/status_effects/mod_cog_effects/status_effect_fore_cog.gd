@@ -48,7 +48,7 @@ var force = false
 var cheat_index = -1
 var use_strong_cheat = false
 var weak_cheat_end_index = 14
-var strong_cheat_end_index = 29 
+var strong_cheat_end_index = 29
 func apply() -> void:
 	
 		var mod_effect
@@ -104,10 +104,18 @@ func choose_random_cheat() -> StatusEffect:
 			if attempts > max_attempts:
 				break
 			attempts+= 1
-		Globals.last_fore_ability = mod_effect.get_status_name()
+		
 	else:
 		if Util.floor_number < 6:
 			mod_effect = MOD_EFFECTS[RandomService.randi_range_channel('mod_cog_effects', 0, weak_cheat_end_index)]
+			var max_attempts = 50
+			var attempts = 0
+			while mod_effect.get_status_name() in Globals.last_fore_abilities:
+				mod_effect = MOD_EFFECTS[RandomService.randi_range_channel('mod_cog_effects', 0, weak_cheat_end_index)]
+				if attempts > max_attempts:
+					break
+				attempts+= 1
+			Globals.last_fore_ability = mod_effect.get_status_name()
 		else: mod_effect = MOD_EFFECTS[RandomService.randi_range_channel('mod_cog_effects', weak_cheat_end_index + 1, strong_cheat_end_index)]
 		if Util.floor_number > 6 and not Util.monolitic:
 			var max_attempts = 50

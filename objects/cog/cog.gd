@@ -215,7 +215,10 @@ func roll_for_level() -> void:
 		elif dna: 
 			custom_level_range = Vector2i(dna.level_low, dna.level_high)
 		level = RandomService.randi_range_channel('cog_levels', custom_level_range.x, custom_level_range.y)
-		level += level_rebalance
+		if Util.floor_number < 4:
+			if Util.battlesonfloor >= 2:
+				level += level_rebalance 
+		else: level += level_rebalance
 	# Allow for Cogs to be higher level than the floor intends
 	if sign(level_range_offset) == 1:
 		level = custom_level_range.y + level_range_offset

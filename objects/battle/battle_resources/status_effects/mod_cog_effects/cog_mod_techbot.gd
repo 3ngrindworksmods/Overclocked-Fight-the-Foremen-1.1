@@ -25,7 +25,7 @@ func on_gags_chosen(actions: Array[ToonAttack]) -> void:
 		sound_immunity.user = target
 		sound_immunity.targets = [target]
 		manager.append_action(sound_immunity)
-		sound_immunity.rounds = 1
+		#sound_immunity.rounds = 1
 
 func get_status_name() -> String:
 	return "Archaic Techbot"
@@ -38,4 +38,5 @@ func cleanup() -> void:
 	if showing:
 		showing = false
 		manager.battle_ui.hide_attack_label()
+
 		

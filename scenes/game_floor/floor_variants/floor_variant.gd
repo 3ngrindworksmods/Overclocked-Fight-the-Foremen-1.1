@@ -120,7 +120,7 @@ func get_anomalies() -> Array[Script]:
 	if Util.get_player() and Util.get_player().no_negative_anomalies:
 		no_negative_anomalies = true
 		anomaly_files_neg = []
-	if floor_name == "Cog Golf Course" or floor_name == "D.A. Office":
+	if floor_name == "Cog Golf Course":
 		if mod_count < 3:
 			mod_count+= 1
 		pos_chance = 0.25
@@ -128,8 +128,8 @@ func get_anomalies() -> Array[Script]:
 	for i in mod_count:
 		var rng_val := RandomService.randf_channel('floor_mods')
 		var mod_array: Array[String]
-		if i == 0 and floor_name == "Cog Golf Course":
-			rng_val = 0.9
+	#	if i == 0 and floor_name == "Cog Golf Course":
+	#		rng_val = 0.9
 		# Positive anomalies
 		if rng_val <= pos_chance:
 			mod_array = anomaly_files_pos
@@ -174,7 +174,7 @@ func randomize_details() -> void:
 	
 	anomalies = get_anomalies()
 	anomaly_count = anomalies.size()
-
+	
 	
 	for anomaly: Script in anomalies:
 		modifiers.append(anomaly)
@@ -201,7 +201,8 @@ func anomaly_rebalance(qualitoon, floor_name) -> void:
 		if floor_name == "Cog Golf Course":
 			anom_add+= 1
 		anom_add += qualitoon - 2
-		anomalies = add_true_neg_anomalies(anom_add)
+		anomalies.append_array(add_true_neg_anomalies(anom_add))
+		anomaly_count = anomalies.size()
 		for anomaly: Script in anomalies:
 			modifiers.append(anomaly)
 	anomaly_count = anomalies.size()
@@ -300,9 +301,10 @@ func reward_rerolled() -> void:
 	randomize_item()
 
 func clear() -> void:
-	for i in range(anomalies.size() - 1, -1, -1):
-		if modifiers.size() > i:
-			modifiers.remove_at(i)
+	#for i in range(anomalies.size() - 1, -1, -1):
+	#	if modifiers.size() > i:
+	#		modifiers.remove_at(i)
+	modifiers.clear()
 	anomalies.clear()
 
 

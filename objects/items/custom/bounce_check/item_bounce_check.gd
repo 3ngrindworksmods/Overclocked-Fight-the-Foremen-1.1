@@ -18,7 +18,7 @@ const boss_responses = {
 	"Traffic Manager": "Things will be going my way from here on.",
 	"Bookkeeper": "This is one investment you'll regret.",
 	"Union Buster": "Sharing? Now you've done it...",
-	"Scapegoat": "Goat ready for a fight!"
+	"Scapegoat": " Your actions have ram-ifications, Toon"
 }
 var targetCogs : Array[Cog]
 var beans_per_cog = 7.0

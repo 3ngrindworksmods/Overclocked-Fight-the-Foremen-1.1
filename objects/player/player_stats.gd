@@ -111,10 +111,12 @@ func first_time_setup() -> void:
 		set_loadout(character.gag_loadout)
 		if character.base_stats:
 			damage = character.base_stats.damage
+			if Util.oftfdebug: damage = character.base_stats.damage * 100
 			defense = character.base_stats.defense
 			evasiveness = character.base_stats.evasiveness
 			accuracy = character.base_stats.accuracy
 			speed = character.base_stats.speed
+			if Util.oftfdebug: speed = character.base_stats.speed * 1.7
 			turns = character.base_stats.turns
 			max_turns = character.base_stats.max_turns
 	# Quest setup

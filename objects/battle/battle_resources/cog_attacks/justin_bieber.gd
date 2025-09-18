@@ -3,12 +3,22 @@ extends CogAttack
 const PHONE := preload("res://models/props/cog_props/phone_receiver/prop_phone.glb")
 const RECEIVER := preload("res://models/props/cog_props/phone_receiver/prop_receiver.glb")
 const SFX := preload('res://audio/sfx/battle/cogs/attacks/SA_hangup.ogg')
+const gag_status = preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_gag_immunity.tres")
+
+
+@export var track: Track = preload("res://objects/battle/battle_resources/gag_loadouts/gag_tracks/sound.tres")
 const ANIM_HIT := 'slip_backward'
 const ANIM_MISS := 'happy'
+var rounds = 1
 
 func action() -> void:
 	# Roll for accuracy
 	var hit := manager.roll_for_accuracy(self)
+	var gag_immunity = gag_status.duplicate()
+	gag_immunity.rounds = 1
+	gag_immunity.target = user
+	gag_immunity.set_track(track)
+	manager.add_status_effect(gag_immunity)
 	
 	# Create the phone and receiver
 	var phone := PHONE.instantiate()

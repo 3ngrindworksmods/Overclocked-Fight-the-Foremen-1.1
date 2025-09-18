@@ -2,6 +2,7 @@ extends ToonAttack
 class_name GagSquirt
 
 const DEBUFF := preload("res://objects/battle/battle_resources/status_effects/resources/status_effect_drenched.tres")
+
 const POISON_COLOR := Color(0, 0.43, 0.151)
 
 

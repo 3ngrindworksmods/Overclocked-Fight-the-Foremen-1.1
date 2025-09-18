@@ -3,6 +3,7 @@ extends StatBoost
 
 const PARTICLE := preload("res://objects/battle/effects/drenched/drenched.tscn")
 
+
 var particles : GPUParticles3D
 
 func apply() -> void:

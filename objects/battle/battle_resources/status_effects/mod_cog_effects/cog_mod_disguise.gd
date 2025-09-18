@@ -28,10 +28,11 @@ func cleanup() -> void:
 func assess_lure_targets(targets: Array) -> void:
 	for cog: Cog in targets:
 		if is_instance_valid(cog.trap):
-			cog.trap.damage = 0
-			description = "Foreman's shield has been broken and is vulnerable to attacks!"
-			disguise = false
-			target.body.set_color(Color(0.867, 0.627, 0.867))
+			if cog == target:
+				cog.trap.damage = 0
+				description = "Foreman's shield has been broken and is vulnerable to attacks!"
+				disguise = false
+				target.body.set_color(Color(0.867, 0.627, 0.867))
 
 
 func get_status_name() -> String:

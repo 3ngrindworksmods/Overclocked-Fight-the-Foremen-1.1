@@ -1,0 +1,18 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dpg2hpmvh4imq"]
+
+[ext_resource type="Script" uid="uid://calkbu1kt7t0j" path="res://objects/battle/battle_resources/status_effects/status_effect_rage.gd" id="1_7hj7t"]
+
+[resource]
+script = ExtResource("1_7hj7t")
+quality = 0
+rounds = 1
+rounds_offset = 0
+icon_color = Color(1, 1, 1, 1)
+icon_scale = 1.0
+mini_icon_color = Color(1, 1, 1, 1)
+mini_icon_scale = 1.0
+visible = false
+description = "This is a Status Effect"
+status_name = "Rage"
+is_foreman_effect = false
+id = 90809

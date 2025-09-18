@@ -48,6 +48,7 @@ var oftfdebug = false
 var monolitic = false
 var force_foreman = null
 var unstable_chance = 20
+var easy_way_out = false
 var floor_number := -1:
 	set(x):
 		floor_number = x
@@ -341,6 +342,7 @@ func make_boss_chests(holder_node: Node3D, pos_node: Node3D) -> void:
 			1:
 				# Give a random track frame
 				chest.override_item = load("res://objects/items/resources/passive/track_frame.tres")
+				easy_way_out = true
 			2:
 				# Give a toon-up consumable of a type that they don't have any of, except high dive
 				# If they have one of each non-high dive one, it gives a progressive instead

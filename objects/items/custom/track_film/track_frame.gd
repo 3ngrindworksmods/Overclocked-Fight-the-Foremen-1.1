@@ -6,6 +6,7 @@ var track : String
 
 var resource : Item
 
+@export var quota = false
 
 func setup(item : Item):
 	resource = item
@@ -36,6 +37,9 @@ func randomize_track() -> void:
 		return
 	
 	track = hat[RandomService.randi_channel('gag_frames') % hat.size()]
+	if Util.easy_way_out:
+		Util.easy_way_out = false #the easy way out for thuse resourec stuff
+		quota_gag()
 	get_better_track()
 	# Store the track in the item resource
 	resource.arbitrary_data['track'] = track
@@ -44,7 +48,10 @@ func randomize_track() -> void:
 func get_better_track() -> void:
 	var loadout = Util.get_player().stats.gags_unlocked
 	if Util.floor_number == 3:
-		if Util.battlesonfloor > 3 and loadout['Throw'] < 5:
+		print("in track frame better track")
+		print(Util.battlesonfloor)
+		if Util.battlesonfloor > 2 and loadout['Throw'] < 4:
+			print("forcing throw")
 			track = 'Throw'
 			return
 	#trade sound for lowest gag bc of foremen
@@ -107,3 +114,20 @@ func get_hat() -> Array[String]:
 func get_gag_got() -> ToonAttack:
 	var gag_track := Util.get_player().stats.character.gag_loadout.get_track_of_name(track)
 	return gag_track.gags[Util.get_player().stats.gags_unlocked[track] - 1]
+
+func quota_gag() -> void:
+	var loadout = Util.get_player().stats.gags_unlocked
+	if Util.floor_number == 1:
+		var lure_count = loadout.get("Lure", null)
+		print("hello in lure wuotoa")
+		if lure_count != null and lure_count < 2:
+			track = "Lure"
+		
+	elif Util.floor_number == 2:
+		var throw_count = loadout.get("Throw", null)
+		print("hello in throw wuotoa")
+		if throw_count != null and throw_count < 3:
+			track = "Throw"
+
+func make_quota() -> void:
+	quota = true

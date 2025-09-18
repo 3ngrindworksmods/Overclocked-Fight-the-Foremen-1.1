@@ -27,6 +27,8 @@ func renew() -> void:
 	comp_attack.heal_multiplier *= 0.5
 	comp_attack.foreman_attack_boost = 1.18
 	comp_attack.targets = [cog]
+	comp_attack.attack_lines.clear()
+	comp_attack.attack_lines.append_array(["Compensation Compensation Compensation Compensation Compensation"])
 	manager.round_end_actions.append(comp_attack) 
 	
 
