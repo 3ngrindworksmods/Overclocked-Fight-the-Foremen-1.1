@@ -37,7 +37,7 @@ func combine(effect: StatusEffect) -> bool:
 	if not effect.status_name == "Budget Cuts":
 		return false
 	
-	if force_no_combine or effect.force_no_combine:
+	if force_no_combine:
 		return false
 
 	if effect.track_name == track_name:

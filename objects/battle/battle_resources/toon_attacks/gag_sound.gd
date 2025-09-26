@@ -17,8 +17,9 @@ const FUNNY_SOUND_2 := preload("res://audio/sfx/battle/gags/sound/funny_sounds/b
 const FUNNY_SOUND_3 := preload("res://audio/sfx/battle/gags/sound/funny_sounds/regular_show.ogg")
 const FUNNY_SOUND_4 := preload("res://audio/sfx/battle/gags/sound/funny_sounds/snore.ogg")
 const FUNNY_SOUND_5 := preload("res://audio/sfx/battle/gags/sound/funny_sounds/tuco_get_out.ogg")
+const FUNNY_SOUND_6 := preload("res://audio/sfx/battle/gags/sound/funny_sounds/windows_xp.ogg")
 # ad windows
-const FUNNY_SOUND: Array = [FUNNY_SOUND_1, FUNNY_SOUND_2, FUNNY_SOUND_3, FUNNY_SOUND_4, FUNNY_SOUND_5]
+const FUNNY_SOUND: Array = [FUNNY_SOUND_1, FUNNY_SOUND_2, FUNNY_SOUND_3, FUNNY_SOUND_4, FUNNY_SOUND_5, FUNNY_SOUND_6]
 func action():
 	# Play the movie's sfx
 	replace_sfx_effect()
@@ -148,6 +149,6 @@ func get_splash_damage_str() -> String:
 		return get_true_damage()
 	return get_true_damage(0.5)
 func replace_sfx_effect() -> void:
-	var phunny_chance = 4
+	var phunny_chance = 6
 	if RandomService.randi_channel('true_random') % 100 < phunny_chance:
 		sfx_blast = RandomService.array_pick_random('true_random', FUNNY_SOUND)

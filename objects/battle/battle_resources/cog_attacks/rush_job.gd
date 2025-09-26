@@ -30,11 +30,11 @@ func action() -> void:
 		
 		# Player reaction
 		#cog.set_animation('finger-wag')
-		await manager.sleep(3.0)
+		await manager.sleep(4.2)
 
 
 
-func create_debuff(cog : Cog) -> StatBoost:
+func create_debuff(cog : Cog) -> StatusEffect:
 	var effect := gag_job_effect.duplicate()
 	effect.target = cog
 	effect.rounds = 0

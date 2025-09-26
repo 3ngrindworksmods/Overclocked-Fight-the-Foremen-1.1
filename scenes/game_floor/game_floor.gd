@@ -114,6 +114,7 @@ func generate_floor() -> void:
 	var total_rooms = int((room_count - 2) / 2)
 	var total_battles := int(total_rooms * battle_ratio)
 	rooms_remaining = [total_battles, total_rooms - total_battles]
+	increase_obstacle_rooms()
 
 	if floor_rooms.special_rooms and RandomService.randf_channel('room_logic') < get_special_room_chance():
 		# 50% chance to add a "special room" to the pool
@@ -406,6 +407,19 @@ func increase_floor_rooms() -> void:
 		room_count *= 1.1
 	elif Util.floor_number == 5:
 		room_count *= 1.15
+
+func increase_obstacle_rooms() -> void:
+	if Util.floor_number >= 4:
+		return
+	var obstacle_add = 0
+	if floor_variant.floor_name == "The Factory":
+		obstacle_add = maxi(1, Util.floor_number)
+	if floor_variant.floor_name == "The Mint":
+		obstacle_add = maxi(0, Util.floor_number - 1)
+	if floor_variant.floor_name == "D.A. Office":
+		obstacle_add = maxi(0, Util.floor_number - 2 )
+	room_count += obstacle_add * 2
+	rooms_remaining[1] += obstacle_add
 #region GAME TRACKING
 ## Game Signals
 signal s_cog_spawned(cog: Cog)

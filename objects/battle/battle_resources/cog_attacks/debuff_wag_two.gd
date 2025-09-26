@@ -46,7 +46,7 @@ func action():
 	
 	particles.queue_free()
 
-func create_debuff(player : Player) -> StatBoost:
+func create_debuff(player : Player) -> StatusEffect:
 		var effect := STAT_BOOST.duplicate()
 		effect.target = player
 		effect.rounds = 1

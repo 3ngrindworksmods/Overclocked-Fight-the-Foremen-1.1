@@ -43,7 +43,7 @@ func apply_random_effect(cog : Cog) -> void:
 	effect.target = cog
 	if effect is StatBoost:
 		tweak_stat_boost(effect)
-		effect.boost = RandomService.randf_range_channel('true_random', 1.12, 1.20)
+		effect.boost = RandomService.randf_range_channel('true_random', 1.15, 1.25)
 		effect.quality = StatusEffect.EffectQuality.POSITIVE
 		effect.rounds = 2
 	elif effect is StatEffectRegeneration:
@@ -55,7 +55,7 @@ func apply_random_effect(cog : Cog) -> void:
 	BattleService.ongoing_battle.add_status_effect(effect)
 
 func tweak_stat_boost(effect : StatBoost) -> void:
-	var valid_effects := ["defense", "damage"]
+	var valid_effects := ["defense", "damage","defense"]
 	if effect.stat not in valid_effects:
 		effect.stat = RandomService.array_pick_random('true_random', valid_effects)
 

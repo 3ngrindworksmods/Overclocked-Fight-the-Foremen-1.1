@@ -32,6 +32,9 @@ func on_toon_heal(health : int) -> void:
 	last_player_hp = health
 	
 func on_action_started(action: BattleAction) -> void:
+	if unstable:
+		if manager.sniper_cringe:
+			return
 	if action is CogAttack and action.target_type != BattleAction.ActionTarget.SELF:
 		if action.user == target and action.action_name != "" and action.action_name != "Mental Math" and action.action_name != "Snipe":
 			#action.custom_player_death_source = "Whistleblower Fan"

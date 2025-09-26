@@ -67,11 +67,11 @@ func apply() -> void:
 func force_cheats() -> int:
 			var index
 			if Globals.fore_cog_index == 0:
-				index = 14
+				index = 16
 			elif Globals.fore_cog_index == 1:
-				index = 14 #11
+				index = 10 #11
 			elif Globals.fore_cog_index == 2:
-				index = 23 #6
+				index = 10 #6
 			else:
 				index = 19
 			return index

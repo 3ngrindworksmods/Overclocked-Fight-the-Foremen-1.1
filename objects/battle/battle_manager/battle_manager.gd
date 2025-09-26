@@ -338,7 +338,7 @@ func spawn_reward() -> void:
 			#chest2.global_rotation = battle_node.global_rotation
 			#chest2.item_pool = load(ITEM_POOL_PROGRESSIVES)
 			#player.boost_queue.queue_text("Foreman Bounty!", Color.GREEN)
-			if player.better_battle_rewards == true and current_round <= 2:
+			if player.better_battle_rewards == true and current_round <= bounty_threshold():
 				chest.item_pool = ItemService.PROGRESSIVE_POOL
 				player.boost_queue.queue_text("Bounty!", Color.GREEN)
 			else:
@@ -691,7 +691,7 @@ func add_status_effect(status_effect: StatusEffect) -> void:
 			return
 	status_effect.manager = self
 	status_effects.append(status_effect)
-	if status_effect is GagJob:  
+	if status_effect is GagJob: 
 		await status_effect.apply()
 	else: status_effect.apply()
 		
@@ -993,6 +993,7 @@ func create_v1_5_skele_cog(cog: Cog) -> Cog:
 	#cog.dna.is_v2 = false
 	new_cog.foreman = true
 	new_cog.dna = Globals.foreman_dna
+	new_cog.dna.cog_name = "Threeman"
 	battle_node.add_child(new_cog)
 	new_cog.global_transform = cog.global_transform
 	new_cog.body.set_color(Color("00a2ff"))
@@ -1100,3 +1101,13 @@ func get_crit_threshold(luck: float) -> float:
 	# Map luck=1 → 20, luck=2 → 5
 	var threshold = lerp(25.0, 5.0, (luck - 1.0) / 1.0)
 	return threshold
+
+func bounty_threshold() -> int:
+	if Util.floor_number < 4:
+		return 2
+	elif Util.floor_number == 4 or Util.floor_number == 5:
+		return start_cog_size
+	elif Util.floor_number == 7:
+		return 4
+	else: 
+		return 5

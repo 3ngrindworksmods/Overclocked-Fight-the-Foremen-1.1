@@ -22,6 +22,11 @@ func renew() -> void:
 	rush_job.user = cog
 	rush_job.targets = [cog]
 	manager.round_end_actions.append(rush_job) 
+	if(target.stats.max_hp * 1.49 < target.stats.hp):
+		var rush_job2: = Rush_Job_Attack.duplicate()
+		rush_job2.user = cog
+		rush_job2.targets = [cog]
+		manager.round_end_actions.append(rush_job2) 
 	
 
 func get_icon() -> Texture2D:

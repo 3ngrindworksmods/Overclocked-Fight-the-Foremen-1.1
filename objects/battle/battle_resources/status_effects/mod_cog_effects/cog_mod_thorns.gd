@@ -7,13 +7,13 @@ var effectdict = {}
 var battle_ui
 var turns_used = 0
 var unstable = false
-var damage_mult = 0.15
-var msg = "You will be dealt 15% of the unboosted gag damage dealt this turn"
+var damage_mult = 0.2
+var msg = "You will be dealt 20% of the unboosted gag damage dealt this turn"
 
 func apply() -> void:
 	var cog: Cog = target
 	var playerturns = Util.get_player().stats.turns
-	damage_mult = 0.15 + (playerturns - 3) * 0.1
+	damage_mult = 0.20 + (playerturns - 3) * 0.15
 	msg = "You will be dealt %d%% of the unboosted gag damage dealt this turn" % (damage_mult * 100)
 	description = "You will be dealt %d%% of the base damage that occurs on a turn" % (damage_mult * 100)
 	battle_ui = manager.battle_ui
@@ -40,7 +40,7 @@ func on_action_started(action: BattleAction) -> void:
 				for cog in action.targets:
 					if cog.trap:
 						dmg_dealt += cog.trap.damage * damage_mult * Util.get_player().stats.damage
-				Util.get_player().quick_heal(-1 * dmg_dealt)
+				#Util.get_player().quick_heal(-1 * dmg_dealt)
 				retributive_attack(dmg_dealt)
 			elif action is GagTrap:
 				pass

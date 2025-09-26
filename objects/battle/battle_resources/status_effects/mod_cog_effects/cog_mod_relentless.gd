@@ -13,7 +13,7 @@ func apply() -> void:
 	player = Util.get_player()
 	if Util.final_boss2:
 		var attack = load('res://objects/battle/battle_resources/cog_attacks/debuff_wag.gd').duplicate()
-		attack.damage = Util.get_player().stats.max_hp * (mark_amount * 0.1)
+		attack.damage = Util.get_player().stats.max_hp * (mark_amount * 0.12)
 		attack.summary = "Foreman's Mark"
 		attack.mark = true
 		attack.marks = mark_amount
@@ -25,7 +25,7 @@ func apply() -> void:
 	
 func renew() -> void:
 	var attack = load('res://objects/battle/battle_resources/cog_attacks/resources/debuff_wag.tres').duplicate()
-	attack.damage = Util.get_player().stats.max_hp * (mark_amount * 0.1)
+	attack.damage = Util.get_player().stats.max_hp * (mark_amount * 0.12)
 	attack.summary = "Foreman's Mark"
 	attack.mark = true
 	attack.marks = mark_amount
@@ -35,7 +35,7 @@ func renew() -> void:
 	attack.action_name = "Mark of the Foreman"
 	manager.round_end_actions.append(attack)
 	mark_amount+= 1
-	description = "At the end of round will attack and mark dealing %d%% of max laff in damage" % (mark_amount * 10)
+	description = "At the end of round will attack and mark dealing %d%% of max laff in damage" % (mark_amount * 12)
 	
 
 func get_icon() -> Texture2D:

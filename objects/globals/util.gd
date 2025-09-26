@@ -373,10 +373,8 @@ func make_boss_chests(holder_node: Node3D, pos_node: Node3D) -> void:
 func force_damage_candy() -> bool:
 	var player : Player = Util.get_player()
 	var difference = player.stats.damage - player.character.base_stats.damage
-	if difference < 0.25:
-		print("underpowered forcing damage")
+	if difference < 0.27:
 		return true
-	print("good enough damage stat: of + ", difference)	
 	return false
 
 #endregion

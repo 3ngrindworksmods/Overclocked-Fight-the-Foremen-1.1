@@ -378,6 +378,8 @@ func construct_cog():
 	if foreman:
 		if dna.status_effects[0].get_status_name() == "Confused":
 			dna.suit = dna.SuitType.SUIT_C
+		if dna.status_effects[0].get_status_name() == "Spongy":
+			health_mod*= 1.15
 	body = Globals.fetch_suit(dna.suit, skelecog).instantiate()
 	match dna.suit:
 		CogDNA.SuitType.SUIT_A:
@@ -518,7 +520,7 @@ func get_attack() -> CogAttack:
 			return get_debug_attack()
 		var special_attack_gate = 1 if special_attack else 0
 		var bruh
-		if foreman: bruh = RandomService.randi_channel('true_random') % (attacks.size() - 1 - special_attack_gate)
+		if foreman or dna.cog_name == "Threeman": bruh = RandomService.randi_channel('true_random') % (attacks.size() - 1 - special_attack_gate)
 		else: bruh = RandomService.randi_channel('true_random') % (attacks.size())
 		var attack: CogAttack
 		if special_attack: attack = attacks[attacks.size() - 1].duplicate()

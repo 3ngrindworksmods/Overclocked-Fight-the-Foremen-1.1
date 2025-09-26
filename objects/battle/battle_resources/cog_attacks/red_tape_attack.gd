@@ -118,7 +118,7 @@ func eviction_notice() -> void:
 	await manager.barrier(player.animator.animation_finished, 3.0)
 	await manager.check_pulses(targets)
 	
-func create_debuff(player : Player) -> StatBoost:
+func create_debuff(player : Player) -> StatusEffect:
 		var effect := Bind_Status_Reference.duplicate()
 		effect.target = player
 		effect.rounds = 0

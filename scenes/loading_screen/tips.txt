@@ -1,8 +1,7 @@
-Boss Cogs will unlure after one round.
+Most Boss Cogs will unlure after one round.
 Treasure chests may be hidden, keep a sharp eye out!
 Use your Gag Points wisely!
 Check your ToonTasks on the pause menu!
-Some items are exclusive to certain item pools.
 Not all items are good(Fedora).
 The Fedora was DELETED from the game.
 Gag Vouchers are saved for use in-battle.
@@ -36,3 +35,4 @@ Pocket Pranks can be recharged by defeating battles.
 Group Lures decrease the damage of their main target more harshly.
 Treasures you pick up will become consumables in battle.
 Toontown Event Horizon tomorrow.
+Toontown.

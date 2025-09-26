@@ -162,7 +162,7 @@ func add_true_neg_anomalies(anom_count) -> Array[Script]:
 	var mod_array: Array[String] = ANOMALIES_NEGATIVE.duplicate()
 	var mods: Array[Script] = []
 	for i in anom_count:
-		var rng_val := RandomService.randf_channel('floor_mods')
+		#var rng_val := RandomService.randf_channel('floor_mods')
 		var new_mod: String = RandomService.array_pick_random('floor_mods', mod_array)
 		var loaded_mod: Script = Util.universal_load(new_mod)
 		if not loaded_mod in modifiers:
@@ -195,6 +195,11 @@ func randomize_details() -> void:
 func anomaly_rebalance(qualitoon, floor_name) -> void:
 	#this is pure slop but whatever
 	var anom_add = 0
+	if floor_name == "The Factory":
+		qualitoon -= 1
+	if floor_name == "The Mint":
+		if Util.floor_number < 2:
+			qualitoon -= 1
 	if qualitoon >=3:
 		print("rebalancing anomalies with qualitoon item of: ", qualitoon)
 		clear()

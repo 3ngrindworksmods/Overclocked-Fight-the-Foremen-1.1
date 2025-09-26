@@ -19,6 +19,10 @@ var traffic_man: Cog
 func apply() -> void:
 	traffic_man = logic_effect.traffic_man
 	trimmed_list = track_list.duplicate()
+	for i in range(trimmed_list.size() - 1, -1, -1):
+		#remove throw from list for banning
+		if trimmed_list[i].track_name == "Sound":
+			trimmed_list.remove_at(i)
 	manager.s_round_ended.connect(require_random_track)
 	manager.s_round_started.connect(on_round_started)
 	BattleService.s_battle_participant_died.connect(participant_died)

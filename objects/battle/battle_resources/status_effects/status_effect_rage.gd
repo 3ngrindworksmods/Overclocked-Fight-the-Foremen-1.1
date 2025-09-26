@@ -8,7 +8,6 @@ var particles : GPUParticles3D
 
 func apply() -> void:
 	super()
-	print("bruh in  rage dremched")
 	particles = PARTICLE.instantiate()
 	target.add_child(particles)
 	particles.global_position = target.body.head_bone.global_position
