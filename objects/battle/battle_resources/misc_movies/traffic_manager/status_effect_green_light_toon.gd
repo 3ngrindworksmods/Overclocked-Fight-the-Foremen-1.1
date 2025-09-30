@@ -60,10 +60,7 @@ func require_random_track() -> void:
 			break
 	required_tracks[0] = new_track
 	if Util.floor_number > 3 and new_track.track_name == "Sound":
-		if RandomService.randi_channel('true_random') % 100 < 110:
-			required_tracks[0] = trimmed_list[1]
-		else:
-			print("failed the reroll for sound")
+		required_tracks[0] = trimmed_list[1]
 			
 	var new_effect := make_banned_effect(new_track.gags)
 	manager.add_status_effect(new_effect)

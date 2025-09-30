@@ -11,7 +11,7 @@ You can maintain the momentum from moving platforms with a jump.
 Jumping while on conveyor belts can give you more control.
 Strange anomalies will appear after floor 2.
 You can walk diagonally on laser grids if you're careful.
-Battle speed can be adjusted in the Settings menu.
+Battle speed can be adjusted up to 4x in the Settings menu.
 The Settings menu has lots of options for customization.
 Compensation Compensation Compensation Compensation Compensation.
 Grindworks too slow? Check out the Pacelover2000 mod.
@@ -36,3 +36,4 @@ Group Lures decrease the damage of their main target more harshly.
 Treasures you pick up will become consumables in battle.
 Toontown Event Horizon tomorrow.
 Toontown.
+Did you know?

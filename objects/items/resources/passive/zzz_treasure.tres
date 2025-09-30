@@ -26,7 +26,7 @@ stats_add = {}
 stats_multiply = {}
 player_values = {}
 arbitrary_data = {
-"heal_perc": 60,
+"heal_perc": 70,
 "texture": ExtResource("1_qehgf")
 }
 remember_item = false

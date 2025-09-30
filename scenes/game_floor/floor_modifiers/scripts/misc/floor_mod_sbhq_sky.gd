@@ -8,6 +8,8 @@ var skybox: Node3D
 
 func modify_floor() -> void:
 	skybox = load('res://models/props/sky_boxes/skybox.fbx').instantiate()
+	print("SKKKKKKKKKKKKYYYYYYYYYYYYYYYY")
+	print("maybe skyhq skybox")
 	var player: Player
 	if not Util.get_player():
 		player = await Util.s_player_assigned

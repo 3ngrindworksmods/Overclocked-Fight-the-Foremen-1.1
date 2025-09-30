@@ -34,6 +34,9 @@ func on_action_started(action: BattleAction) -> void:
 	else:
 		return
 	if action is ToonAttack:
+		if Util.get_player().character.character_name == "Barnacle Bessie":
+			if action is DropBig or action is DropSmall:
+				return
 		if turns_used == thorn_index:
 			var dmg_dealt = 0
 			if action is GagLure:

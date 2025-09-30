@@ -14,9 +14,20 @@ const MOD_EFFECTS : Array[StatusEffect] = [
 	preload("res://objects/battle/battle_resources/status_effects/mod_cog_effects/mod_cog_confused.tres") #  s  8
 ]
 
+var last_ability = "hello there"
+var unstable_effect
 func apply() -> void:
 	if not MOD_EFFECTS.is_empty():
-		var mod_effect: StatusEffect = RandomService.array_pick_random('mod_cog_effects', MOD_EFFECTS).duplicate()
+		var max_attempts = 20
+		var attempts = 0
+		var mod_effect: StatusEffect = RandomService.array_pick_random('puzzles', MOD_EFFECTS).duplicate()
+		while mod_effect.get_status_name() == last_ability:
+			mod_effect = RandomService.array_pick_random('puzzles', MOD_EFFECTS)
+			if attempts > max_attempts:
+				break
+			attempts+= 1
+		unstable_effect.prev_ability = mod_effect.get_status_name()
+		unstable_effect = "yuh"
 		mod_effect.target = target
 		mod_effect.rounds = 0
 		mod_effect.unstable = true

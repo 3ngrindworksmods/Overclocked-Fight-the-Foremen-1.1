@@ -105,7 +105,9 @@ func get_next_floors() -> void:
 			new_floor.randomize_item()
 		if Util.floor_number < 3:
 			new_floor.anomaly_rebalance(new_floor.reward.qualitoon,new_floor.floor_name)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The Foremen"
+			
 		next_floors.append(new_floor)
 		taken_items.append(new_floor.reward.item_name)
 	add_more_floors(floor_variants)
@@ -160,7 +162,9 @@ func add_chaos_floor(floor_variants) -> void:
 			#anom_array = try_add_unstable_core_anom(new_floor, anom_array)
 			print("bruh what?")
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Survive The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Survive The Foremen"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_good_item()
 		next_floors.append(new_floor)
@@ -170,7 +174,9 @@ func add_normal_floor(floor_variants) -> void:
 		var anom_array = new_floor.get_no_anomaly()
 		anom_array = try_add_unstable_core_anom(new_floor, anom_array)
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The Foremen"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
@@ -180,7 +186,9 @@ func add_reorg_floor(floor_variants) -> void:
 		var anom_array = new_floor.get_reorg_anomaly()
 		anom_array = try_add_unstable_core_anom(new_floor, anom_array)
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The Foremen"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
@@ -191,7 +199,9 @@ func add_mixed_bag_floor(floor_variants) -> void:
 		var anom_array = new_floor.get_mixed_bag_anomaly()
 		anom_array = try_add_unstable_core_anom(new_floor, anom_array)
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The Foremen"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
@@ -200,7 +210,9 @@ func add_larynx_floor(floor_variants) -> void:
 		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
 		var anom_array = new_floor.get_larynx_anomaly()
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The 🗣"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The 🗣"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
@@ -210,7 +222,9 @@ func add_annoying_floor(floor_variants) -> void:
 		var new_floor: FloorVariant = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
 		var anom_array = new_floor.get_annoying_anomaly()
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The Foremen"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
@@ -221,6 +235,7 @@ func add_huoftf_floor(floor_variants) -> void:
 		var anom_array = new_floor.get_highly_unstable_anomaly()
 		new_floor.scripted_details(anom_array)
 		new_floor.floor_name = "Highly Unstable Overclocked Fight The Foremen"
+		add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.randomize_item()
 		next_floors.append(new_floor)
@@ -232,7 +247,9 @@ func add_positive_floor(floor_variants) -> void:
 		var anom_array = new_floor.all_positive_anomalies()
 		anom_array = try_add_unstable_core_anom(new_floor, anom_array)
 		new_floor.scripted_details(anom_array)
-		if Util.floor_number >= 3: new_floor.floor_name = "Overclocked Fight The Foremen"
+		if Util.floor_number >= 3: 
+			new_floor.floor_name = "Overclocked Fight The Foremen"
+			add_sbhq_skybox(new_floor)
 		while not new_floor.reward:
 			new_floor.get_snowflake()
 		next_floors.append(new_floor)
@@ -241,3 +258,9 @@ func try_add_unstable_core_anom(new_floor: FloorVariant,anom_array) -> Array:
 	if Util.floor_number >= 6:
 		anom_array = new_floor.add_unstable_core(anom_array)
 	return anom_array
+
+func add_sbhq_skybox(new_floor : FloorVariant) -> void:
+	print("adding sky box maybe?")
+	var new_mod: String = "res://scenes/game_floor/floor_modifiers/scripts/misc/floor_mod_sbhq_sky.gd" 
+	var loaded_mod: Script = Util.universal_load(new_mod)
+	new_floor.modifiers.append(loaded_mod)

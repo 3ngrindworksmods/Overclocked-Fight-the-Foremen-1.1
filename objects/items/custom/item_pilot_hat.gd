@@ -22,6 +22,9 @@ func setup() -> void:
 
 func on_action_started(action: BattleAction) -> void:
 	if action is ToonAttack:
+		if Util.get_player().character.character_name == "Barnacle Bessie":
+			if action is DropBig or action is DropSmall:
+				return
 		turns_used += 1
 		if turns_used % activate_turn == 0:
 			#action.damage = action.damage * DMG_BONUS

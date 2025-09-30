@@ -219,7 +219,7 @@ func anomaly_rebalance_on_set_anoms(qualitoon, floor_name) -> void:
 		print("rebalancing anomalies with qualitoon item of: ", qualitoon)
 		if floor_name == "Cog Golf Course":
 			anom_add+= 1
-		anom_add += qualitoon - 2
+		anom_add += qualitoon - 3
 		anomalies.append_array(add_true_neg_anomalies(anom_add))
 	if anomalies.size() > 1:
 		for i in range(1, anomalies.size()):
@@ -272,7 +272,7 @@ func randomize_good_item() -> void:
 	model.queue_free()
 
 func get_snowflake() -> void:
-	reward = load('res://objects/items/resources/passive/snowflake_treasure.tres').duplicate()
+	reward = load('res://objects/items/resources/passive/zzz_treasure.tres').duplicate()
 	var model := reward.model.instantiate()
 	model.hide()
 	Util.add_child(model)

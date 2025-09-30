@@ -66,7 +66,7 @@ func create_debuff(player : Player) -> StatBoost:
 	effect.stat = 'defense'
 	effect.target = player
 	effect.rounds = 0
-	effect.special_description = "The next mark will result in minus %d%% max laff" % ((marks+1) * 10)
+	effect.special_description = "The next mark will result in minus %d%% max laff" % ((marks+1) * 12)
 	#description = "At the end of round will attack and mark dealing %d%% of max laff in damage" % (mark_amount * 10)
 	effect.status_name = debuff_msg
 	effect.force_no_combine = true
