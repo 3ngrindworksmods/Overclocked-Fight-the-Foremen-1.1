@@ -18,14 +18,14 @@ var traffic_man: Cog
 
 func apply() -> void:
 	traffic_man = logic_effect.traffic_man
-	trimmed_list = track_list.duplicate()
+	trimmed_list = track_list.duplicate(true)
 	for i in range(trimmed_list.size() - 1, -1, -1):
 		#remove throw from list for banning
 		if trimmed_list[i].track_name == "Throw":
 			trimmed_list.remove_at(i)
 	#new_track.track_name == "Throw"
 	# Create the gag ban effect
-	banned_effect = GAG_BAN_EFFECT.duplicate()
+	banned_effect = GAG_BAN_EFFECT.duplicate(true)
 	banned_effect.rounds = rounds
 	banned_effect.target = player
 	banned_effect.s_banned_gag_used.connect(on_banned_gag_used)
@@ -51,7 +51,7 @@ func on_round_ended() -> void:
 	retaliation_queued = false
 
 func ban_random_track(_actions: Array[BattleAction] = []) -> void:
-	RandomService.array_shuffle_channel('true_random', trimmed_list)
+	trimmed_list.shuffle()
 	var new_track: Track = trimmed_list.pop_back()
 	for gag in new_track.gags:
 		banned_effect.gags.append(gag)

@@ -59,7 +59,9 @@ const UNCAPPED_STAT_VAL := -999.0
 		if is_foreman: 
 			hp = clamp(x, 0, max_hp * 3)
 		else:
-			hp = clamp(x, 0, max_hp)
+			match allow_overheal:
+				true: hp = maxi(0, x)
+				_: hp = clamp(x, 0, max_hp)
 		hp_changed.emit(hp)
 @export var turns := 1
 var debug_invulnerable := false
@@ -76,6 +78,8 @@ signal s_defense_changed(new_defense: float)
 signal s_evasiveness_changed(new_evasiveness: float)
 signal s_speed_changed(new_speed: float)
 
+## Modifiers
+var allow_overheal := false
 
 
 func _to_string():

@@ -1,39 +1,8 @@
-[gd_resource type="Resource" script_class="ItemPool" load_steps=28 format=3 uid="uid://kcxno616hkgc"]
+[gd_resource type="Resource" script_class="ItemPool" load_steps=2 format=3 uid="uid://kcxno616hkgc"]
 
-[ext_resource type="Script" uid="uid://combwqypom1ru" path="res://objects/items/classes/item.gd" id="1_oxrd8"]
-[ext_resource type="Resource" uid="uid://mcma7hjx2dbi" path="res://objects/items/resources/passive/candies/candy_super_luck.tres" id="2_n4ktm"]
-[ext_resource type="Resource" uid="uid://dqvuaib7ycu2y" path="res://objects/items/resources/passive/candies/candy_super_damage.tres" id="3_e731w"]
-[ext_resource type="Resource" uid="uid://dyxf8l3n5r0vb" path="res://objects/items/resources/passive/candies/candy_super_defense.tres" id="4_eqgxa"]
-[ext_resource type="Resource" uid="uid://drm7n8ce5entv" path="res://objects/items/resources/passive/candies/candy_super_evasiveness.tres" id="5_wersp"]
-[ext_resource type="Resource" uid="uid://b3e3bj8ick774" path="res://objects/items/resources/passive/pink_jellybean.tres" id="6_w52d4"]
-[ext_resource type="Resource" uid="uid://u6t6t6a38cb2" path="res://objects/items/resources/passive/blue_jellybean.tres" id="7_x61t0"]
-[ext_resource type="Resource" uid="uid://duygfpffob40k" path="res://objects/items/resources/passive/zzz_treasure.tres" id="8_vk3ji"]
-[ext_resource type="Resource" uid="uid://bjtq481jok2t4" path="res://objects/items/resources/active/big_foghorn.tres" id="9_athb6"]
-[ext_resource type="Resource" uid="uid://dn3tyrs1qljko" path="res://objects/items/resources/accessories/hats/big_weight_hat.tres" id="12_ebao6"]
-[ext_resource type="Resource" uid="uid://cyiwxplege133" path="res://objects/items/resources/passive/emergency_unite.tres" id="14_a5mu0"]
-[ext_resource type="Script" uid="uid://wiibpvvki8vs" path="res://objects/items/classes/item_pool.gd" id="18_5jvy5"]
-[ext_resource type="Resource" uid="uid://csrgfcqxhl18x" path="res://objects/items/resources/active/golden_jellybean.tres" id="20_eqgxa"]
-[ext_resource type="Resource" uid="uid://b4pssn72ke7uu" path="res://objects/items/resources/accessories/glasses/heart_glasses.tres" id="22_x61t0"]
-[ext_resource type="Resource" uid="uid://cwxiev4r8wnvk" path="res://objects/items/resources/accessories/hats/fruit_hat.tres" id="23_x61t0"]
-[ext_resource type="Resource" uid="uid://bijl4ti84vsu4" path="res://objects/items/resources/accessories/glasses/mini_blinds.tres" id="24_vk3ji"]
-[ext_resource type="Resource" uid="uid://b77qp325baypa" path="res://objects/items/resources/passive/pink_slip.tres" id="25_athb6"]
-[ext_resource type="Resource" uid="uid://wfdgusu3acxl" path="res://objects/items/resources/active/paint_bucket.tres" id="27_3s3yo"]
-[ext_resource type="Resource" uid="uid://b8woaed8cv7go" path="res://objects/items/resources/accessories/backpacks/bee_wings.tres" id="28_ebao6"]
-[ext_resource type="Resource" uid="uid://dyl7r5ve67tbs" path="res://objects/items/resources/accessories/backpacks/pixie_wings.tres" id="29_yjdyf"]
-[ext_resource type="Resource" uid="uid://hqfvncal8xvq" path="res://objects/items/resources/accessories/hats/fez.tres" id="30_a5mu0"]
-[ext_resource type="Resource" uid="uid://bye8a25d8np3f" path="res://objects/items/resources/accessories/backpacks/angel_wings.tres" id="31_66m13"]
-[ext_resource type="Resource" uid="uid://crvenqtyote8y" path="res://objects/items/resources/accessories/hats/party_hat.tres" id="31_cgk14"]
-[ext_resource type="Resource" uid="uid://dkbg3o5aa81j8" path="res://objects/items/resources/active/white_out.tres" id="32_cgk14"]
-[ext_resource type="Resource" uid="uid://bgw6nin360tg5" path="res://objects/items/resources/accessories/backpacks/wood_sword.tres" id="35_lviim"]
-[ext_resource type="Resource" uid="uid://dpbjr75nuswfn" path="res://objects/items/resources/accessories/hats/jester_hat.tres" id="37_a272n"]
-[ext_resource type="Resource" uid="uid://c8wjy8fdkxarx" path="res://objects/items/resources/active/gag_button.tres" id="39_v6ptv"]
-[ext_resource type="Resource" uid="uid://cs5v54jdptmge" path="res://objects/items/resources/accessories/glasses/square_frames.tres" id="40_9d57v"]
-[ext_resource type="Resource" uid="uid://mjt03er8fskn" path="res://objects/items/resources/accessories/hats/dino_hat.tres" id="82_3nl6l"]
-[ext_resource type="Resource" uid="uid://c1ityxde5xlmm" path="res://objects/items/resources/accessories/glasses/celebrity_shades.tres" id="9_bpdna"]
-[ext_resource type="Resource" uid="uid://bw4hfnjy11e63" path="res://objects/items/resources/accessories/backpacks/plane_wings.tres" id="33_6rl6l"]
+[ext_resource type="Script" uid="uid://bllywk0dq1ug3" path="res://objects/items/classes/item_pool.gd" id="18_5jvy5"]
 
 [resource]
 script = ExtResource("18_5jvy5")
-items = Array[ExtResource("1_oxrd8")]([ExtResource("2_n4ktm"), ExtResource("3_e731w"), ExtResource("4_eqgxa"), ExtResource("6_w52d4"), ExtResource("7_x61t0"), ExtResource("8_vk3ji"), ExtResource("9_athb6"), ExtResource("12_ebao6"), ExtResource("14_a5mu0"), ExtResource("20_eqgxa"), ExtResource("22_x61t0"), ExtResource("24_vk3ji"), ExtResource("27_3s3yo"), ExtResource("28_ebao6"), ExtResource("29_yjdyf"), ExtResource("30_a5mu0"), ExtResource("31_66m13"), ExtResource("31_cgk14"), ExtResource("35_lviim"), ExtResource("37_a272n"), ExtResource("39_v6ptv"),ExtResource("40_9d57v"), ExtResource("82_3nl6l"),ExtResource("9_bpdna"), ExtResource("33_6rl6l")])
+items = PackedStringArray("res://objects/items/resources/passive/candies/candy_super_luck.tres", "res://objects/items/resources/passive/candies/candy_super_damage.tres", "res://objects/items/resources/passive/candies/candy_super_defense.tres", "res://objects/items/resources/passive/candies/candy_super_evasiveness.tres", "res://objects/items/resources/passive/pink_jellybean.tres", "res://objects/items/resources/active/big_foghorn.tres", "res://objects/items/resources/accessories/glasses/goggles.tres", "res://objects/items/resources/accessories/backpacks/dragon_wings.tres", "res://objects/items/resources/passive/emergency_unite.tres", "res://objects/items/resources/accessories/hats/crown.tres", "res://objects/items/resources/accessories/hats/tiara.tres", "res://objects/items/resources/accessories/backpacks/scuba_tank.tres", "res://objects/items/resources/accessories/hats/rainbow_wig.tres", "res://objects/items/resources/active/golden_jellybean.tres", "res://objects/items/resources/active/toy_hammer.tres", "res://objects/items/resources/accessories/glasses/star_glasses.tres", "res://objects/items/resources/active/paint_bucket.tres", "res://objects/items/resources/active/accessory_trunk.tres", "res://objects/items/resources/accessories/hats/fez.tres", "res://objects/items/resources/accessories/backpacks/angel_wings.tres", "res://objects/items/resources/active/white_out.tres", "res://objects/items/resources/accessories/glasses/aviator_glasses.tres", "res://objects/items/resources/accessories/backpacks/wood_sword.tres", "res://objects/items/resources/active/gumball_machine.tres", "res://objects/items/resources/accessories/glasses/square_frames.tres", "res://objects/items/resources/accessories/backpacks/gag_pack.tres", "res://objects/items/resources/accessories/glasses/round_glasses.tres", "res://objects/items/resources/accessories/backpacks/large_pouch.tres", "res://objects/items/resources/accessories/shoes/super_toon_boots.tres")
 low_roll_override = 7
-metadata/_custom_type_script = "uid://wiibpvvki8vs"

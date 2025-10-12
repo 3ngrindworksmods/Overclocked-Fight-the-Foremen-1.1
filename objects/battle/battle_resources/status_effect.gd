@@ -22,7 +22,7 @@ enum EffectQuality {
 @export var mini_icon_color := Color.WHITE
 @export var mini_icon_scale := 1.0
 @export var visible := true
-@export var description := "This is a Status Effect"
+@export_multiline var description := "This is a Status Effect"
 @export var status_name := "Status Effect"
 @export var is_foreman_effect := false
 var target: Actor

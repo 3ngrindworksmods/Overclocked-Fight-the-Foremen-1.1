@@ -1,5 +1,4 @@
 extends CogAttack
-class_name Tabulate
 
 const CALCULATOR := preload('res://models/props/cog_props/calculator/calculator.glb')
 const PARTICLES := preload('res://objects/battle/effects/tabulate/tabulate.tscn')

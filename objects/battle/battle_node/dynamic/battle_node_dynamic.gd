@@ -12,8 +12,8 @@ var justbc = 0
 	set(x):
 		cog_range = x
 		handle_cog_count()
-		cog_range.x = clamp(cog_range.x, MIN_DYNAMIC_COGS, MAX_DYNAMIC_COGS)
-		cog_range.y = clamp(cog_range.y, cog_range.x, MAX_DYNAMIC_COGS)
+		cog_range.x = maxi(cog_range.x, 1)
+		cog_range.y = maxi(cog_range.y, cog_range.x)
 		if not cog_node:
 			await ready
 		if Engine.is_editor_hint():
@@ -44,7 +44,7 @@ func _refresh_cogs() -> void:
 			#Make  first battle in FTF always 2 cogs
 			cog_count = 2
 			
-		else: cog_count = RandomService.randi_range_channel("cog_counts", cog_range.x, cog_range.y)
+		else: cog_count = RNG.channel(RNG.ChannelCogCounts).randi_range(cog_range.x, cog_range.y)
 	if Util.floor_number == 5:
 		cog_count = cog_boost(cog_count)
 	Util.battlesonfloor += 1

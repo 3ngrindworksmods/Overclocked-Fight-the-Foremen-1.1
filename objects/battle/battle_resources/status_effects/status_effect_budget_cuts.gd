@@ -23,12 +23,14 @@ func apply() -> void:
 		saved_regen = player.stats.gag_regeneration[track_name]
 		player.stats.gag_regeneration[track_name] += penalty
 
-func expire() -> void:
+func cleanup() -> void:
 	if player.stats.gag_regeneration.has(track_name):
 		player.stats.gag_regeneration[track_name] = saved_regen
 
 func get_description() -> String:
-	return "%d %s point regeneration" % [ penalty, track_name]
+	if player.gags_cost_beans:
+		return "Increased %s cost" % track_name
+	return "%d %s point regeneration" % [penalty, track_name]
 
 func get_icon() -> Texture2D:
 	return EffectIcons[track_name]

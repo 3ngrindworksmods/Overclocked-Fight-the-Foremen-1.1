@@ -14,6 +14,14 @@ const ALT_FLOOR_CHANCE := 0
 var player: Player
 var next_floors: Array[FloorVariant] = []
 
+func _init():
+	# GameLoader Requirement:
+	# - final_boss_floor.tres has a very large dependency chain.
+	#   Since this script extends Node and has a class_name, the editor will try
+	#   to load all dependencies of it. This causes a large lag spike if preloaded.
+	GameLoader.queue_into(GameLoader.Phase.GAMEPLAY, self, {
+		'FINAL_FLOOR_VARIANT': 'res://scenes/game_floor/floor_variants/alt_floors/final_boss_floor.tres'
+	})
 
 func _ready():
 	if Util.floor_number == 5:
@@ -90,15 +98,14 @@ func get_next_floors() -> void:
 	elif Util.floor_number == 2:
 		floor_variants.remove_at(floor_variants.size() - 1)
 	var taken_items: Array[String] = []
-	if Util.floor_number >= 3:
-		add_normal_floor(floor_variants)
-		add_positive_floor(floor_variants)
-		random_floor_amount = 2
-	for i in random_floor_amount:
-		var random_floor = floor_variants[RandomService.randi_channel('floors') % floor_variants.size()]
-		if Util.floor_number < 2:
-			floor_variants.remove_at(floor_variants.find(random_floor))
-		var new_floor = Util.universal_load(FLOOR_VARIANT_PATH + random_floor).duplicate()
+	for i in 3:
+		var new_floor := floor_variants[RNG.channel(RNG.ChannelFloors).randi() % floor_variants.size()]
+		floor_variants.erase(new_floor)
+		new_floor = new_floor.duplicate()
+		
+		# Roll for alt floor
+		if new_floor.alt_floor and RandomService.randi_channel('floors') % ALT_FLOOR_CHANCE == 0:
+			new_floor = new_floor.alt_floor.duplicate()
 		
 		new_floor.randomize_details()
 		while not new_floor.reward or new_floor.reward.item_name in taken_items:
@@ -115,7 +122,7 @@ func get_next_floors() -> void:
 	$ElevatorUI.set_floor_index(0)
 
 func final_boss_time_baby() -> void:
-	var final_floor := FINAL_FLOOR_VARIANT.duplicate()
+	var final_floor := FINAL_FLOOR_VARIANT.duplicate(true)
 	final_floor.level_range = Vector2i(13, 15)
 	next_floors = [final_floor]
 	$ElevatorUI.floors = next_floors
